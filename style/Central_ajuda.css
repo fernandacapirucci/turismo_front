@@ -1,0 +1,881 @@
+/* ==================================================
+   CONFIGURAÇÕES GERAIS
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0c0636;
+    background: white;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+button,
+a,
+summary,
+input,
+select {
+    outline-offset: 3px;
+}
+
+
+/* ==================================================
+   FOCO PARA ACESSIBILIDADE
+================================================== */
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+    outline: 3px solid #009fa3;
+    outline-offset: 4px;
+}
+
+
+/* ==================================================
+   BARRA SUPERIOR
+================================================== */
+
+.top-bar {
+    min-height: 42px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-container {
+    width: 94%;
+    max-width: 1200px;
+    min-height: 42px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.telefone {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    color: #444;
+}
+
+.telefone img {
+    width: 20px;
+    height: 20px;
+}
+
+.links-topo {
+    display: flex;
+    gap: 35px;
+}
+
+.links-topo a {
+    color: #444;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.links-topo a:hover {
+    color: #007f82;
+    text-decoration: underline;
+}
+
+
+/* ==================================================
+   CABEÇALHO
+================================================== */
+
+.header {
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+    width: 94%;
+    max-width: 1200px;
+    min-height: 80px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-area > img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.logo-text h1 {
+    font-size: 24px;
+    color: #0c0636;
+    line-height: 1.2;
+}
+
+.logo-text h1 span {
+    color: #008f92;
+}
+
+.logo-text p {
+    color: #666;
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.btn-login {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+
+    border: 2px solid #ddd;
+    border-radius: 25px;
+
+    color: #0c0636;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-login img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-login:hover {
+    background: #f4fafa;
+    border-color: #009fa3;
+}
+
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+.menu-container {
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+#menu {
+    width: 94%;
+    max-width: 1200px;
+    min-height: 62px;
+    margin: auto;
+
+    display: flex;
+    align-items: stretch;
+    gap: 28px;
+}
+
+#menu a {
+    min-height: 62px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #444;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    border-bottom: 3px solid transparent;
+
+    transition: 0.2s;
+}
+
+#menu a img {
+    width: 21px;
+    height: 21px;
+    object-fit: contain;
+}
+
+#menu a:hover {
+    color: #008f92;
+}
+
+#menu a.active {
+    color: #008f92;
+    border-bottom-color: #008f92;
+}
+
+
+/* ==================================================
+   CONTEÚDO
+================================================== */
+
+.conteudo-ajuda {
+    position: relative;
+
+    width: 94%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 55px 0 90px;
+}
+
+
+/* ==================================================
+   CABEÇALHO DA AJUDA
+================================================== */
+
+.cabecalho-ajuda {
+    text-align: center;
+
+    max-width: 750px;
+
+    margin: 0 auto 45px;
+}
+
+.cabecalho-ajuda h2 {
+    color: #0c0636;
+
+    font-size: 34px;
+
+    line-height: 1.2;
+
+    margin-bottom: 15px;
+}
+
+.cabecalho-ajuda p {
+    color: #555;
+
+    font-size: 18px;
+
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   CONTATOS
+================================================== */
+
+.contatos {
+    margin-bottom: 55px;
+}
+
+.contatos > h3,
+.duvidas > h3 {
+    color: #0c0636;
+
+    font-size: 25px;
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.contatos-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.contato-card {
+    border: 1px solid #ddd;
+
+    border-radius: 18px;
+
+    padding: 28px 22px;
+
+    background: white;
+
+    text-align: center;
+
+    box-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.contato-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.10);
+}
+
+.icone-contato {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #e5f5f5;
+
+    font-size: 27px;
+}
+
+.contato-card h4 {
+    color: #0c0636;
+
+    font-size: 20px;
+
+    margin-bottom: 10px;
+}
+
+.contato-card p {
+    min-height: 65px;
+
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+
+    margin-bottom: 18px;
+}
+
+.botao-contato {
+    min-height: 46px;
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 15px;
+
+    border: none;
+    border-radius: 24px;
+
+    background: #100633;
+    color: white;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.botao-contato:hover {
+    background: #24165e;
+}
+
+button.botao-contato {
+    border: none;
+}
+
+
+/* ==================================================
+   DÚVIDAS FREQUENTES
+================================================== */
+
+.duvidas {
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+.lista-duvidas {
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.lista-duvidas details {
+    border: 1px solid #d8d8d8;
+
+    border-radius: 12px;
+
+    background: white;
+
+    overflow: hidden;
+}
+
+.lista-duvidas summary {
+    min-height: 58px;
+
+    padding: 16px 20px;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    color: #0c0636;
+
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.lista-duvidas summary::marker {
+    color: #009fa3;
+}
+
+.lista-duvidas details[open] summary {
+    background: #f1f9f9;
+    color: #007f82;
+}
+
+.lista-duvidas details p {
+    padding: 0 20px 20px;
+
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.6;
+}
+
+
+/* ==================================================
+   BOTÃO FLUTUANTE
+================================================== */
+
+.but-touch {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 1000;
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background: #53ba83;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s,
+        background 0.2s;
+}
+
+.but-touch:hover {
+    background: #3e9e6c;
+    transform: scale(1.05);
+}
+
+.but-touch img {
+    width: 31px;
+    height: 31px;
+}
+
+
+/* ==================================================
+   RODAPÉ
+================================================== */
+
+footer {
+    background: #0c0636;
+
+    color: white;
+
+    padding: 50px 0;
+}
+
+.footer-content {
+    width: 94%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1.2fr 1.5fr;
+
+    gap: 45px;
+}
+
+.footer-logo h3 {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+
+    font-size: 17px;
+}
+
+.footer-logo h3 img {
+    width: 45px;
+    height: 45px;
+}
+
+.footer-logo p {
+    max-width: 280px;
+
+    margin-top: 15px;
+
+    color: #eee;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.footer-content h4 {
+    color: #9fd86b;
+
+    font-size: 15px;
+
+    margin-bottom: 16px;
+}
+
+.footer-content a {
+    display: block;
+
+    color: white;
+
+    font-size: 14px;
+
+    margin-bottom: 11px;
+}
+
+.footer-content a:hover {
+    color: #9fd86b;
+    text-decoration: underline;
+}
+
+.footer-content > div > p {
+    color: white;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 10px;
+}
+
+
+/* ==================================================
+   RESPONSIVIDADE
+================================================== */
+
+@media (max-width: 900px) {
+
+    .contatos-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .contato-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 400px;
+        width: 100%;
+        margin: auto;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .top-bar {
+        display: none;
+    }
+
+    .header-container {
+        min-height: 78px;
+    }
+
+    .logo-area > img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo-text h1 {
+        font-size: 18px;
+    }
+
+    .logo-text p {
+        font-size: 11px;
+    }
+
+    .btn-login {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .btn-login img {
+        display: none;
+    }
+
+    #menu {
+        width: max-content;
+        min-height: 65px;
+
+        margin-left: 15px;
+
+        gap: 22px;
+
+        overflow-x: auto;
+    }
+
+    .menu-container {
+        overflow-x: auto;
+    }
+
+    .conteudo-ajuda {
+        padding-top: 40px;
+    }
+
+    .cabecalho-ajuda h2 {
+        font-size: 28px;
+    }
+
+    .cabecalho-ajuda p {
+        font-size: 16px;
+    }
+
+    .contatos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contato-card:last-child {
+        grid-column: auto;
+        max-width: none;
+    }
+
+    .contato-card p {
+        min-height: auto;
+    }
+
+    .contatos > h3,
+    .duvidas > h3 {
+        font-size: 22px;
+    }
+
+    .lista-duvidas summary {
+        font-size: 16px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .but-touch {
+        width: 58px;
+        height: 58px;
+
+        right: 18px;
+        bottom: 18px;
+    }
+
+    .contato-card {
+    opacity: 0;
+    transform: translateY(15px);
+
+    transition:
+        opacity 0.4s ease,
+        transform 0.4s ease,
+        box-shadow 0.2s;
+}
+
+.contato-card.card-visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ================= MODAL ================= */
+
+.modal-atendimento {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.65);
+}
+
+.modal-atendimento-conteudo {
+    position: relative;
+
+    width: min(520px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 35px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    color: #0c0636;
+}
+
+.modal-atendimento-conteudo h2 {
+    font-size: 25px;
+
+    margin-bottom: 10px;
+}
+
+.modal-atendimento-conteudo > p {
+    color: #555;
+
+    font-size: 16px;
+
+    margin-bottom: 20px;
+}
+
+.fechar-atendimento {
+    position: absolute;
+
+    top: 12px;
+    right: 15px;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #100633;
+
+    color: white;
+
+    font-size: 26px;
+
+    cursor: pointer;
+}
+
+.opcoes-atendimento {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.opcao-atendimento {
+    min-height: 65px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 3px;
+
+    padding: 12px 16px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 12px;
+
+    background: white;
+
+    color: #0c0636;
+
+    text-align: left;
+
+    font-size: 15px;
+}
+
+.opcao-atendimento:hover {
+    border-color: #009fa3;
+
+    background: #f1f9f9;
+}
+
+.opcao-atendimento strong {
+    font-size: 16px;
+}
+
+.opcao-atendimento span {
+    color: #555;
+
+    font-size: 13px;
+}
+
+button.opcao-atendimento {
+    width: 100%;
+
+    font-family: inherit;
+
+    cursor: pointer;
+}
+
+.mensagem-copia {
+    min-height: 24px;
+
+    margin-top: 15px;
+
+    color: #00805f !important;
+
+    font-size: 14px !important;
+}
+
+}

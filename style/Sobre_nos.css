@@ -1,0 +1,860 @@
+
+
+/* ==================================================
+   CONFIGURAÇÕES GERAIS
+================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #0c0636;
+
+    background: white;
+
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #009fa3;
+    outline-offset: 4px;
+}
+
+
+/* ==================================================
+   BARRA SUPERIOR
+================================================== */
+
+.top-bar {
+    min-height: 42px;
+
+    background: #f5f5f5;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.top-container {
+    width: 94%;
+    max-width: 1200px;
+
+    min-height: 42px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.telefone {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #444;
+
+    font-size: 14px;
+}
+
+.telefone img {
+    width: 20px;
+    height: 20px;
+}
+
+.links-topo {
+    display: flex;
+
+    gap: 35px;
+}
+
+.links-topo a {
+    color: #444;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+.links-topo a:hover {
+    color: #008f92;
+
+    text-decoration: underline;
+}
+
+
+/* ==================================================
+   CABEÇALHO
+================================================== */
+
+.header {
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+    width: 94%;
+    max-width: 1200px;
+
+    min-height: 82px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.logo-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.logo-area > img {
+    width: 55px;
+    height: 55px;
+
+    object-fit: contain;
+}
+
+.logo-text h1 {
+    color: #0c0636;
+
+    font-size: 24px;
+
+    line-height: 1.2;
+}
+
+.logo-text h1 span {
+    color: #008f92;
+}
+
+.logo-text p {
+    color: #666;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+.btn-login {
+    min-height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 8px 18px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 25px;
+
+    color: #0c0636;
+
+    font-size: 14px;
+
+    font-weight: bold;
+}
+
+.btn-login img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-login:hover {
+    background: #f4fafa;
+
+    border-color: #009fa3;
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+.menu-container {
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+}
+
+#menu {
+    width: 94%;
+    max-width: 1200px;
+
+    min-height: 62px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: stretch;
+
+    gap: 28px;
+}
+
+#menu a {
+    min-height: 62px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #444;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    border-bottom: 3px solid transparent;
+
+    transition: 0.2s;
+}
+
+#menu a img {
+    width: 21px;
+    height: 21px;
+
+    object-fit: contain;
+}
+
+#menu a:hover {
+    color: #008f92;
+}
+
+#menu a.active {
+    color: #008f92;
+
+    border-bottom-color: #008f92;
+}
+
+
+/* ==================================================
+   CONTEÚDO PRINCIPAL
+================================================== */
+
+.sobre-container {
+    width: 94%;
+
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 60px 0 80px;
+}
+
+
+/* ==================================================
+   INTRODUÇÃO
+================================================== */
+
+.sobre-intro {
+    display: grid;
+
+    grid-template-columns: 1.5fr 0.8fr;
+
+    align-items: center;
+
+    gap: 60px;
+
+    margin-bottom: 55px;
+}
+
+.sobre-texto h2 {
+    color: #0c0636;
+
+    font-size: 38px;
+
+    line-height: 1.2;
+
+    margin-bottom: 20px;
+}
+
+.sobre-texto p {
+    color: #555;
+
+    font-size: 18px;
+
+    line-height: 1.7;
+
+    margin-bottom: 18px;
+}
+
+.sobre-texto .frase-destaque {
+    color: #333;
+
+    font-size: 23px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+.frase-destaque span {
+    color: #008f92;
+}
+
+.sobre-imagem {
+    min-height: 260px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 25px;
+
+    background: #eff9f8;
+}
+
+.sobre-imagem img {
+    width: 190px;
+
+    height: 190px;
+
+    object-fit: contain;
+}
+
+
+/* ==================================================
+   MISSÃO / VISÃO / VALORES
+================================================== */
+
+.mvv-box {
+    padding: 35px;
+
+    margin-bottom: 45px;
+
+    border: 1px solid #d8d8d8;
+
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.mvv-box > h2,
+.data-box > h2 {
+    color: #0c0636;
+
+    font-size: 28px;
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.mvv-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.mvv-card {
+    padding: 25px 20px;
+
+    border-radius: 15px;
+
+    background: #f7fbfb;
+
+    text-align: center;
+}
+
+.mvv-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #dff3f1;
+
+    font-size: 28px;
+}
+
+.mvv-card h3 {
+    color: #0c0636;
+
+    font-size: 21px;
+
+    margin-bottom: 12px;
+}
+
+.mvv-card p {
+    color: #555;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+.mvv-card ul {
+    padding-left: 20px;
+
+    color: #555;
+
+    text-align: left;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+}
+
+
+/* ==================================================
+   NÚMEROS / IMPACTO
+================================================== */
+
+.data-box {
+    padding: 40px 30px;
+
+    margin-bottom: 50px;
+
+    border-radius: 20px;
+
+    background: #f0f9f8;
+}
+
+.data-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+}
+
+.data-card {
+    padding: 25px 15px;
+
+    text-align: center;
+}
+
+.numero {
+    display: block;
+
+    color: #008f92;
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.data-card p {
+    color: #555;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+/* ==================================================
+   CTA
+================================================== */
+
+.cta-sobre {
+    padding: 45px 30px;
+
+    border-radius: 20px;
+
+    background: #100633;
+
+    color: white;
+
+    text-align: center;
+}
+
+.cta-sobre h2 {
+    font-size: 28px;
+
+    margin-bottom: 12px;
+}
+
+.cta-sobre p {
+    max-width: 650px;
+
+    margin: 0 auto 25px;
+
+    color: #eee;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+.botao-pacotes {
+    min-height: 48px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px 24px;
+
+    border-radius: 25px;
+
+    background: #9fd86b;
+
+    color: #0c0636;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.botao-pacotes:hover {
+    transform: translateY(-2px);
+
+    background: #b3eb7d;
+}
+
+/* ================= Botão flutuante ================= */
+
+.but-touch {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 1000;
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background: #53ba83;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s,
+        background 0.2s;
+}
+
+.but-touch:hover {
+    background: #3e9e6c;
+    transform: scale(1.05);
+}
+
+.but-touch img {
+    width: 31px;
+    height: 31px;
+}
+
+/* ==================================================
+   RODAPÉ
+================================================== */
+
+footer {
+    background: #0c0636;
+
+    color: white;
+
+    padding: 50px 0;
+}
+
+.footer-content {
+    width: 94%;
+    max-width: 1200px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr 1.2fr 1.5fr;
+
+    gap: 45px;
+}
+
+.footer-logo h3 {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: white;
+
+    font-size: 17px;
+}
+
+.footer-logo h3 img {
+    width: 45px;
+    height: 45px;
+}
+
+.footer-logo p {
+    max-width: 280px;
+
+    margin-top: 15px;
+
+    color: #eee;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+.footer-content h4 {
+    color: #9fd86b;
+
+    font-size: 15px;
+
+    margin-bottom: 16px;
+}
+
+.footer-content a {
+    display: block;
+
+    color: white;
+
+    font-size: 14px;
+
+    margin-bottom: 11px;
+}
+
+.footer-content a:hover {
+    color: #9fd86b;
+
+    text-decoration: underline;
+}
+
+.footer-content > div > p {
+    color: white;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    margin-bottom: 10px;
+}
+
+
+
+/* ==================================================
+   ANIMAÇÃO
+================================================== */
+
+.mvv-card,
+.data-card {
+    opacity: 1;
+    transform: translateY(0);
+
+    transition:
+        opacity 0.5s ease,
+        transform 0.5s ease;
+}
+
+.mvv-card.visivel,
+.data-card.visivel {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+/* ==================================================
+   RESPONSIVIDADE
+================================================== */
+
+@media (max-width: 900px) {
+
+    .sobre-intro {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .sobre-imagem {
+        min-height: 220px;
+    }
+
+    .mvv-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .data-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .top-bar {
+        display: none;
+    }
+
+    .header-container {
+        min-height: 78px;
+    }
+
+    .logo-area > img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .logo-text h1 {
+        font-size: 18px;
+    }
+
+    .logo-text p {
+        font-size: 11px;
+    }
+
+    .btn-login {
+        padding: 8px 12px;
+
+        font-size: 12px;
+    }
+
+    .btn-login img {
+        display: none;
+    }
+
+    #menu {
+        width: max-content;
+
+        min-height: 65px;
+
+        margin-left: 15px;
+
+        gap: 22px;
+
+        overflow-x: auto;
+    }
+
+    .menu-container {
+        overflow-x: auto;
+    }
+
+    .sobre-container {
+        padding-top: 40px;
+    }
+
+    .sobre-texto h2 {
+        font-size: 30px;
+    }
+
+    .sobre-texto .frase-destaque {
+        font-size: 20px;
+    }
+
+    .sobre-texto p {
+        font-size: 16px;
+    }
+
+    .mvv-box {
+        padding: 25px 18px;
+    }
+
+    .mvv-box > h2,
+    .data-box > h2 {
+        font-size: 23px;
+    }
+
+    .data-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .numero {
+        font-size: 30px;
+    }
+
+    .cta-sobre {
+        padding: 35px 20px;
+    }
+
+    .cta-sobre h2 {
+        font-size: 23px;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+}

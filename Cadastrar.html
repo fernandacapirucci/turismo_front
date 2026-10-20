@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/favicon-logo.png">
+    <title>Turismo sem Barreiras</title>
+
+    <link rel="stylesheet" href="style/Cadastrar.css">
+</head>
+
+<body>
+
+<!-- Barra superior -->
+<div class="top-bar">
+    <div class="top-container">
+
+        <div class="telefone">
+            <img src="assets/telefone.png" alt="Telefone">
+            <span>Central 0800 123 4567</span>
+        </div>
+
+        <div class="links-topo">
+            <a href="#">Seja uma agência parceira</a>
+            <a href="#">Ajuda</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- Cabeçalho -->
+<header class="header">
+    <div class="header-container">
+
+        <div class="logo-area">
+            <img src="assets/logo.png" alt="Logo Turismo sem Barreiras">
+
+            <div class="logo-text">
+                <h1>Turismo <span>sem Barreiras</span></h1>
+                <p>Viagens acessíveis pelo Brasil</p>
+            </div>
+        </div>
+
+        <a href="Login.html" class="btn-login">
+            <img src="assets/perfil.png" alt="">
+            Entrar ou cadastrar
+        </a>
+
+    </div>
+</header>
+
+<!-- Menu -->
+<div class="menu-container">
+    <nav id="menu">
+
+        <a href="Home.html">
+            <img src="assets/inicio.png" alt="">
+            <span>Início</span>
+        </a>
+
+        <a href="Pacotes.html">
+            <img src="assets/pacotes.png" alt="">
+            <span>Pacotes</span>
+        </a>
+
+        <a href="Agencia.html">
+            <img src="assets/agencias.png" alt="">
+            <span>Agências</span>
+        </a>
+
+        <a href="Como_funciona.html">
+            <img src="assets/como-funciona.png" alt="">
+            <span>Como funciona</span>
+        </a>
+
+        <a href="Sobre_nos.html">
+            <img src="assets/sobre-nos.png" alt="">
+            <span>Sobre nós</span>
+        </a>
+
+        <a href="Central_ajuda.html">
+            <img src="assets/centraldeajuda.png" alt="">
+            <span>Central de ajuda</span>
+        </a>
+
+    </nav>
+</div>
+
+<section class="user">
+
+    <div class="user-box"></div>
+
+    <div class="user-data">
+
+        <!-- Abas Entrar / Cadastrar -->
+        <div class="tabs">
+            <button type="button" class="tab" onclick="window.location.href='Login.html'">Entrar</button>
+            <button type="button" class="tab active" onclick="window.location.href='Cadastrar.html'">Cadastrar</button>
+        </div>
+
+        <h2>Criar conta</h2>
+        <p>Escolha o tipo de conta e comece agora.</p>
+
+        <!-- Escolha do tipo de conta -->
+        <div class="tipos-conta" role="radiogroup" aria-label="Tipo de conta">
+
+            <button type="button" class="tipo-conta active" data-tipo="viajante" role="radio" aria-checked="true">
+                <span class="icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="4.5" r="2"/>
+                        <path d="M5 8.5h14M12 8.5v6M9 21l3-6.5 3 6.5"/>
+                    </svg>
+                </span>
+                <span class="titulo">Viajante</span>
+                <p class="descricao">Vou viajar</p>
+            </button>
+
+            <button type="button" class="tipo-conta" data-tipo="agencia" role="radio" aria-checked="false">
+                <span class="icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 10v10h16V10M3 10l2-6h14l2 6M3 10c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3M10 20v-5h4v5"/>
+                    </svg>
+                </span>
+                <span class="titulo">Agência</span>
+                <p class="descricao">Ofereço pacotes</p>
+            </button>
+
+        </div>
+
+        <!-- Nome (vira "Nome da Empresa" quando for agência) -->
+        <div>
+            <label class="rotulo" for="nome" id="rotulo-nome">Nome</label>
+            <input type="text" id="nome" placeholder="Digite o seu nome completo">
+        </div>
+
+        <div>
+            <label class="rotulo" for="email">E-mail</label>
+            <input type="email" id="email" placeholder="Digite o seu e-mail">
+        </div>
+
+        <div>
+            <label class="rotulo" for="senha">Senha</label>
+            <div class="campo-senha">
+                <input type="password" id="senha" placeholder="Digite a sua senha">
+                <button type="button" id="toggle-senha" aria-label="Mostrar senha">
+                    <img src="assets/olho-fechado.png" id="icone-olho" alt="">
+                </button>
+            </div>
+        </div>
+
+        <div class="but-entrar">
+            <button type="button" onclick="window.location.href='Home.html'">Criar conta</button>
+        </div>
+
+        <div class="divider">
+            <span></span>
+            <p>ou</p>
+            <span></span>
+        </div>
+
+        <div class="but-google">
+            <button type="button">
+                <img src="assets/Google.png" alt="">
+                Continuar com o Google
+            </button>
+        </div>
+
+        <!-- Aparece só quando "Agência" estiver selecionada -->
+        <p class="nota-agencia" id="nota-agencia" hidden>
+            Contas de agência passam por aprovação do time Turismo sem Barreiras antes de publicar pacotes.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="principal"></section>
+
+<script src="javaScript/Cadastrar.js"></script>
+</body>
+</html>

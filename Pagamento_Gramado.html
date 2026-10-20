@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="assets/favicon-logo.png">
+
+    <title>Pagamento - Gramado e Canela | Turismo sem Barreiras</title>
+
+    <link rel="stylesheet" href="style/Pagamento_Gramado.css">
+
+    <script src="javaScript/Pagamento_Gramado.js" defer></script>
+</head>
+
+<body>
+
+    <a href="#conteudo-principal" class="pular-conteudo">
+        Pular para o conteúdo principal
+    </a>
+
+    <!-- CABEÇALHO -->
+    <header class="header">
+        <div class="header-container">
+
+            <a href="Home.html" class="logo-area"
+               aria-label="Turismo sem Barreiras - Página inicial">
+
+                <img src="assets/logo.png" alt="">
+
+                <div class="logo-text">
+                    <h1>Turismo <span>sem Barreiras</span></h1>
+                    <p>Viagens acessíveis pelo Brasil</p>
+                </div>
+            </a>
+
+            <a href="Login.html" class="btn-login">
+                <img src="assets/perfil.png" alt="">
+                <span>Entrar ou cadastrar</span>
+            </a>
+
+        </div>
+    </header>
+
+    <!-- MENU -->
+    <div class="menu-container">
+        <nav id="menu" aria-label="Menu principal">
+
+            <a href="Home.html" class="active">
+                <img src="assets/inicio.png">
+                <span>Início</span>
+            </a>
+
+            <a href="Pacotes.html">
+                <img src="assets/pacotes.png">
+                <span>Pacotes</span>
+            </a>
+
+
+            <a href="Agencia.html">
+                <img src="assets/agencias.png">
+                <span>Agências</span>
+            </a>
+
+
+            <a href="Como_funciona.html">
+                <img src="assets/como-funciona.png">
+                <span>Como funciona</span>
+            </a>
+
+            <a href="Sobre_nos.html">
+                <img src="assets/sobre-nos.png">
+                <span>Sobre nós</span>
+            </a>
+
+            <a href="Central_ajuda.html">
+                <img src="assets/centraldeajuda.png">
+                <span>Central de ajuda</span>
+            </a>
+
+        </nav>
+    </div>
+
+    <main id="conteudo-principal" class="pagamento-container">
+
+        <a href="Gramado.html" class="voltar">
+            ← Voltar para Gramado
+        </a>
+
+        <section class="introducao">
+
+            <h2>Finalizar pagamento</h2>
+
+            <p>
+                Confira sua viagem para Gramado e Canela,
+                informe seus dados e escolha como pagar.
+            </p>
+
+            <p class="aviso-integracao">
+                O sistema de pagamentos ainda está em integração.
+                Nenhuma cobrança será realizada nesta versão.
+            </p>
+
+        </section>
+
+        <div class="pagamento-grid">
+
+            <!-- FORMULÁRIO -->
+            <section class="formulario-card">
+
+                <form id="form-pagamento">
+
+                    <h2>1. Seus dados</h2>
+
+                    <p class="descricao-etapa">
+                        Preencha os dados do responsável pela reserva.
+                    </p>
+
+                    <div class="campo">
+                        <label for="nome">Nome completo</label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            autocomplete="name"
+                            placeholder="Digite seu nome completo"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            placeholder="exemplo@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefone">
+                            Telefone para contato
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telefone"
+                            name="telefone"
+                            autocomplete="tel"
+                            placeholder="(00) 00000-0000"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="viajantes">
+                            Quantidade de viajantes
+                        </label>
+
+                        <select id="viajantes" name="viajantes">
+                            <option value="1">1 pessoa</option>
+                            <option value="2">2 pessoas</option>
+                            <option value="3">3 pessoas</option>
+                            <option value="4">4 pessoas</option>
+                            <option value="5">5 pessoas</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="data-viagem">
+                            Data da viagem
+                        </label>
+
+                        <select id="data-viagem" name="data-viagem">
+
+                            <option value="10 a 14 de outubro">
+                                10 a 14 de outubro
+                            </option>
+
+                            <option value="05 a 09 de novembro">
+                                05 a 09 de novembro
+                            </option>
+
+                            <option value="21 a 25 de dezembro">
+                                21 a 25 de dezembro
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <!-- ACESSIBILIDADE -->
+                    <div class="campo">
+
+                        <label for="necessidades">
+                            Recursos de acessibilidade necessários
+                            (opcional)
+                        </label>
+
+                        <p id="ajuda-acessibilidade" class="ajuda-campo">
+                            Informe adaptações que possam tornar
+                            sua viagem mais confortável.
+                            Não é necessário informar diagnósticos.
+                        </p>
+
+                        <textarea
+                            id="necessidades"
+                            name="necessidades"
+                            rows="4"
+                            aria-describedby="ajuda-acessibilidade"
+                            placeholder="Ex.: transporte adaptado ou apoio na comunicação"
+                        ></textarea>
+
+                    </div>
+
+                    <!-- PAGAMENTO -->
+                    <fieldset class="metodos">
+
+                        <legend>2. Escolha como pagar</legend>
+
+                        <p class="descricao-etapa">
+                            Selecione uma forma de pagamento.
+                        </p>
+
+                        <label class="metodo">
+
+                            <input
+                                type="radio"
+                                name="metodo"
+                                value="pix"
+                                checked
+                            >
+
+                            <span class="metodo-conteudo">
+                                <strong>Pix</strong>
+                                <small>QR Code ou código Pix</small>
+                            </span>
+
+                        </label>
+
+                        <label class="metodo">
+
+                            <input
+                                type="radio"
+                                name="metodo"
+                                value="cartao"
+                            >
+
+                            <span class="metodo-conteudo">
+                                <strong>Cartão de crédito</strong>
+                                <small>Parcelamento conforme condições do provedor</small>
+                            </span>
+
+                        </label>
+
+                        <label class="metodo">
+
+                            <input
+                                type="radio"
+                                name="metodo"
+                                value="boleto"
+                            >
+
+                            <span class="metodo-conteudo">
+                                <strong>Boleto bancário</strong>
+                                <small>Pagamento conforme vencimento informado</small>
+                            </span>
+
+                        </label>
+
+                    </fieldset>
+
+                    <div
+                        id="info-metodo"
+                        class="info-metodo"
+                        role="status"
+                        aria-live="polite">
+                    </div>
+
+                    <section class="seguranca">
+
+                        <h3>Proteção dos seus dados</h3>
+
+                        <p>
+                            Quando o sistema estiver integrado,
+                            o pagamento será processado por
+                            um provedor especializado.
+                        </p>
+
+                        <p>
+                            Não solicitamos dados bancários
+                            diretamente nesta página.
+                        </p>
+
+                    </section>
+
+                    <button type="submit" class="btn-finalizar">
+                        Continuar para pagamento
+                    </button>
+
+                    <p class="aviso-botao">
+                        Nenhuma cobrança será realizada agora.
+                    </p>
+
+                    <div
+                        id="mensagem-resultado"
+                        class="mensagem-resultado"
+                        role="status"
+                        aria-live="polite"
+                        tabindex="-1"
+                        hidden>
+                    </div>
+
+                </form>
+
+            </section>
+
+            <!-- RESUMO -->
+            <aside class="resumo-card">
+
+                <h2>Resumo da viagem</h2>
+
+                <img
+                    src="assets/RS-principal.png"
+                    alt="Imagem do pacote turístico de Gramado e Canela"
+                    class="imagem-destino"
+                >
+
+                <h3>Gramado e Canela</h3>
+
+                <p class="localizacao">
+                    Gramado e Canela - RS
+                </p>
+
+                <div class="resumo-linha">
+                    <span>Duração</span>
+                    <strong>5 dias / 4 noites</strong>
+                </div>
+
+                <div class="resumo-linha">
+                    <span>Data</span>
+                    <strong id="resumo-data">
+                        10 a 14 de outubro
+                    </strong>
+                </div>
+
+                <div class="resumo-linha">
+                    <span>Preço por pessoa</span>
+                    <strong>R$ 2.290,00</strong>
+                </div>
+
+                <div class="resumo-linha">
+                    <span>Viajantes</span>
+                    <strong id="resumo-viajantes">
+                        1 pessoa
+                    </strong>
+                </div>
+
+                <div class="resumo-total">
+                    <span>Total</span>
+                    <strong id="valor-total">
+                        R$ 2.290,00
+                    </strong>
+                </div>
+
+                <div class="resumo-acessibilidade">
+
+                    <h4>Recursos de acessibilidade</h4>
+
+                    <ul>
+                        <li>Hospedagem adaptada</li>
+                        <li>Transporte adaptado</li>
+                        <li>Guia especializado</li>
+                    </ul>
+
+                </div>
+
+                <p class="observacao-preco">
+                    Valor de referência.
+                    Preço final e disponibilidade
+                    dependem de confirmação.
+                </p>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+
+        <p class="slogan">
+            Mais que viagens,<br>
+            conexões sem barreiras.
+        </p>
+
+        <svg
+            class="onda"
+            viewBox="0 0 1440 120"
+            preserveAspectRatio="none"
+            aria-hidden="true">
+
+            <path
+                class="onda-azul"
+                d="M0 60 C240 10 480 110 760 60 S1200 20 1440 70 L1440 120 L0 120 Z"
+            />
+
+            <path
+                class="onda-verde"
+                d="M0 95 C300 55 600 125 900 90 S1300 60 1440 85 L1440 120 L0 120 Z"
+            />
+
+        </svg>
+
+    </footer>
+
+</body>
+</html>

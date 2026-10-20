@@ -1,0 +1,684 @@
+/* ==================================================
+   CONFIGURAÇÕES GERAIS
+================================================== */
+
+:root {
+    /* Tamanho padrão de TODOS os campos e botões do login
+       (igual ao botão "Continuar com o Google") */
+    --largura-campo: 300px;
+    --altura-campo: 40px;
+    --raio-campo: 30px;
+    --raio-input: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #0c0636;
+    background: white;
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+p {
+    font-size: 12px;
+    color: #4D4D4D;
+    margin-top: 5px;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ==================================================
+   INPUTS (todos com o mesmo tamanho)
+================================================== */
+
+input {
+    display: block;
+    width: 100%;
+    max-width: var(--largura-campo);
+    height: var(--altura-campo);
+
+    margin: 3px 0 10px 0;
+    padding: 0 12px;
+
+    border: 1px solid #666;
+    border-radius: var(--raio-input);
+    outline: none; /* evita o contorno azul padrão do navegador */
+
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+}
+
+/* Hover e focus: engrossa a borda com box-shadow
+   (assim o input NÃO muda de tamanho) */
+input:hover,
+input:focus,
+input.active {
+    border-color: #095169;
+    box-shadow: 0 0 0 1px #095169;
+}
+
+
+/* ==================================================
+   BARRA SUPERIOR
+================================================== */
+
+.top-bar {
+    min-height: 42px;
+
+    background: #f5f5f5;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.top-container {
+    width: 94%;
+    max-width: 1200px;
+
+    min-height: 42px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.telefone {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    color: #444;
+
+    font-size: 14px;
+}
+
+.telefone img {
+    width: 20px;
+    height: 20px;
+}
+
+.links-topo {
+    display: flex;
+
+    gap: 35px;
+}
+
+.links-topo a {
+    color: #444;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+.links-topo a:hover {
+    color: #008f92;
+
+    text-decoration: underline;
+}
+
+
+/* ==================================================
+   CABEÇALHO
+================================================== */
+
+.header {
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.header-container {
+    width: 94%;
+    max-width: 1200px;
+
+    min-height: 82px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.logo-area {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.logo-area > img {
+    width: 55px;
+    height: 55px;
+
+    object-fit: contain;
+}
+
+.logo-text h1 {
+    color: #0c0636;
+
+    font-size: 24px;
+
+    line-height: 1.2;
+}
+
+.logo-text h1 span {
+    color: #008f92;
+}
+
+.logo-text p {
+    color: #666;
+
+    font-size: 13px;
+
+    margin-top: 4px;
+}
+
+.btn-login {
+    min-height: 46px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+
+    border: 2px solid #ddd;
+    border-radius: 25px;
+
+    color: #0c0636;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-login img {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-login:hover {
+    background: #f4fafa;
+    border-color: #009fa3;
+}
+
+
+/* ==================================================
+   MENU
+================================================== */
+
+.menu-container {
+    background: white;
+
+    border-bottom: 1px solid #ddd;
+}
+
+#menu {
+    width: 94%;
+    max-width: 1200px;
+
+    min-height: 62px;
+
+    margin: auto;
+
+    display: flex;
+
+    align-items: stretch;
+
+    gap: 28px;
+}
+
+#menu a {
+    min-height: 62px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    color: #444;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    white-space: nowrap;
+
+    border-bottom: 3px solid transparent;
+
+    transition: 0.2s;
+}
+
+#menu a img {
+    width: 21px;
+    height: 21px;
+
+    object-fit: contain;
+}
+
+#menu a:hover {
+    color: #008f92;
+}
+
+#menu a.active {
+    color: #008f92;
+
+    border-bottom-color: #008f92;
+}
+
+
+/* ==================================================
+   LOGIN - CAIXA PRINCIPAL
+================================================== */
+
+.user {
+    width: 100%;
+    max-width: 400px;
+    margin: 30px auto; /* centraliza horizontalmente + respiro em cima/baixo */
+    padding: 30px 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border: 1px solid #666;
+    border-radius: 15px;
+}
+
+.user-box {
+    position: relative;
+    inset: 0;
+}
+
+/* Coluna ÚNICA de 300px, centralizada na caixa.
+   Tudo que está dentro (abas, títulos, inputs, botões, divisor,
+   botão Google) ocupa 100% dessa coluna, então começa e termina
+   exatamente na mesma reta. */
+.user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+
+    width: 100%;
+    max-width: var(--largura-campo);
+
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.user-data > * {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+/* ==================================================
+   CAMPO DE SENHA + BOTÃO MOSTRAR SENHA
+================================================== */
+
+.campo-senha {
+    position: relative;
+    width: 100%;
+    max-width: var(--largura-campo);
+    margin: 3px 0 10px 0;
+}
+
+.campo-senha input {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0 45px 0 12px; /* espaço para o olho não ficar sobre o texto */
+}
+
+.campo-senha button,
+#toggle-senha {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 24px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.campo-senha button img,
+#toggle-senha img {
+    display: block;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* esconde o olho padrão do Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+
+
+/* ==================================================
+   ABAS (Entrar / Cadastrar)
+================================================== */
+
+.tabs {
+    display: flex;
+    width: 100%;
+    max-width: var(--largura-campo);
+
+    background: #f0f0f0;
+    border-radius: 12px;
+    padding: 4px;
+    margin-bottom: 24px;
+}
+
+.tab {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #666;
+}
+
+.tab.active {
+    background: #fff;
+    color: #1a1a3d;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ==================================================
+   BOTÃO ENTRAR
+================================================== */
+
+.but-entrar {
+    width: 100%;
+    max-width: var(--largura-campo);
+    margin: 0 auto;
+}
+
+.but-entrar button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: var(--altura-campo);
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    border: none;
+    border-radius: var(--raio-campo);
+    background-color: #0c0636;
+    color: white;
+
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+/* ==================================================
+   BOTÃO CONTINUAR COM GOOGLE
+================================================== */
+
+.but-google {
+    width: 100%;
+    max-width: var(--largura-campo);
+    margin: 0 auto 20px;
+}
+
+.but-google button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 100%;
+    height: var(--altura-campo);
+
+    padding: 0 16px;
+
+    background-color: #fff;
+    border: 1px solid #dadce0;
+    border-radius: var(--raio-campo);
+
+    color: #3c4043;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.but-google button:hover {
+    background-color: #f8faff;
+    border-color: #c5c9d0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.but-google button:active {
+    background-color: #eef3fc;
+}
+
+.but-google img {
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+
+/* ==================================================
+   DIVISOR "ou"
+================================================== */
+
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    max-width: var(--largura-campo);
+    margin: 20px 0;
+}
+
+.divider span {
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
+
+.divider p {
+    color: #666;
+    font-size: 14px;
+    margin-top: 0;
+}
+
+
+/* ==================================================
+   CADASTRO - ESCOLHA DO TIPO DE CONTA
+================================================== */
+
+.tipos-conta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 14px 0 18px;
+}
+
+.tipo-conta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+
+    padding: 10px;
+
+    background: #fff;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.tipo-conta:hover {
+    border-color: #aaa;
+}
+
+.tipo-conta:focus-visible {
+    outline: 2px solid #095169;
+    outline-offset: 2px;
+}
+
+.tipo-conta .icone {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 8px;
+    background: #eef2f8;
+    color: #0c0636;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.tipo-conta .icone svg {
+    width: 20px;
+    height: 20px;
+}
+
+.tipo-conta .titulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0c0636;
+}
+
+.tipo-conta .descricao {
+    margin-top: 0;
+    font-size: 11px;
+    color: #666;
+}
+
+/* Tipo selecionado */
+.tipo-conta.active {
+    border-color: #008f92;
+    background: #f8f8f8;
+}
+
+.tipo-conta.active .icone {
+    background: #008f92;
+    color: #fff;
+}
+
+/* Rótulo dos campos (Nome / E-mail / Senha) */
+.rotulo {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Textinho que aparece só para agências */
+.nota-agencia {
+    margin-top: 0;
+    padding: 0 6px 5px;
+    font-size: 11px;
+    line-height: 1.4;
+    color: #666;
+}
+
+.nota-agencia[hidden] {
+    display: none;
+}
+
+
+/* ==================================================
+   RESPONSIVO
+================================================== */
+
+@media (max-width: 600px) {
+
+    .top-container {
+        justify-content: center;
+    }
+
+    .links-topo {
+        display: none;
+    }
+
+    .header-container {
+        height: 65px;
+    }
+
+    .logo-text h1 {
+        font-size: 15px;
+    }
+
+    .hero {
+        min-height: 500px;
+    }
+
+    .agencia-section {
+        grid-template-columns: 1fr;
+    }
+
+}
