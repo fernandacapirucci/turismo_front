@@ -1,0 +1,457 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Confira os dados da sua viagem acessível para o Foz do Iguaçu Macuco.">
+    <link rel="icon" href="assets/favicon-logo.png">
+
+    <title>Pagamento - Foz do Iguaçu Macuco | Turismo sem Barreiras</title>
+
+    <link rel="stylesheet" href="style/Pagamento_FozM.css">
+    <script src="javaScript/Pagamento_FozM.js" defer></script>
+</head>
+
+<body>
+
+    <a href="#conteudo-principal" class="pular-conteudo">
+        Pular para o conteúdo principal
+    </a>
+
+    <!-- BARRA SUPERIOR -->
+    <div class="top-bar">
+        <div class="top-container">
+
+            <div class="telefone">
+                <img src="assets/telefone.png" alt="">
+                <span>Central 0800 123 4567</span>
+            </div>
+
+            <div class="links-topo">
+                <a href="Central_ajuda.html">Ajuda</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CABEÇALHO -->
+    <header class="header">
+        <div class="header-container">
+
+            <a href="Home.html"
+               class="logo-area"
+               aria-label="Turismo sem Barreiras - Página inicial">
+
+                <img src="assets/logo.png" alt="">
+
+                <div class="logo-text">
+                    <p class="nome-site">
+                        Turismo <span>sem Barreiras</span>
+                    </p>
+                    <p>Viagens acessíveis pelo Brasil</p>
+                </div>
+            </a>
+
+            <a href="Login.html" class="btn-login">
+                <img src="assets/perfil.png" alt="">
+                <span>Entrar ou cadastrar</span>
+            </a>
+
+        </div>
+    </header>
+
+    <!-- MENU -->
+    <div class="menu-container">
+        <nav id="menu" aria-label="Menu principal">
+
+            <a href="Home.html" >
+                <img src="assets/inicio.png">
+                <span>Início</span>
+            </a>
+
+            <a href="Pacotes.html" class="active">
+                <img src="assets/pacotes.png">
+                <span>Pacotes</span>
+            </a>
+
+
+            <a href="Agencia.html">
+                <img src="assets/agencias.png">
+                <span>Agências</span>
+            </a>
+
+
+            <a href="Como_funciona.html">
+                <img src="assets/como-funciona.png">
+                <span>Como funciona</span>
+            </a>
+
+            <a href="Sobre_nos.html">
+                <img src="assets/sobre-nos.png">
+                <span>Sobre nós</span>
+            </a>
+
+            <a href="Central_ajuda.html">
+                <img src="assets/centraldeajuda.png">
+                <span>Central de ajuda</span>
+            </a>
+
+        </nav>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="conteudo-principal" class="pagamento-container">
+
+        <a href="FozM.html" class="voltar">
+            ← Voltar para Foz do Iguaçu Macuco
+        </a>
+
+        <section class="introducao" aria-labelledby="titulo-pagamento">
+
+            <h1 id="titulo-pagamento">Finalizar pagamento</h1>
+
+            <p>
+                Confira sua viagem, preencha seus dados
+                e escolha como deseja pagar.
+            </p>
+
+            <p class="aviso-integracao">
+                O pagamento ainda não está disponível.
+                Estamos preparando a integração com um
+                sistema de pagamento seguro.
+            </p>
+
+        </section>
+
+        <div class="pagamento-grid">
+
+            <!-- FORMULÁRIO -->
+            <section class="formulario-card"
+                     aria-labelledby="titulo-dados">
+
+                <form id="form-pagamento">
+
+                    <h2 id="titulo-dados">1. Seus dados</h2>
+
+                    <p class="descricao-etapa">
+                        Preencha os dados de contato do responsável
+                        pela reserva.
+                    </p>
+
+                    <div class="campo">
+                        <label for="nome">
+                            Nome completo
+                            <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nome"
+                            name="nome"
+                            autocomplete="name"
+                            placeholder="Digite seu nome completo"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="email">
+                            E-mail
+                            <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            autocomplete="email"
+                            placeholder="exemplo@email.com"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefone-contato">
+                            Telefone para contato
+                            <span aria-hidden="true">*</span>
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="telefone-contato"
+                            name="telefone"
+                            autocomplete="tel"
+                            placeholder="(00) 00000-0000"
+                            required
+                        >
+                    </div>
+
+                    <div class="campo">
+                        <label for="viajantes">
+                            Quantidade de viajantes
+                        </label>
+
+                        <select id="viajantes" name="viajantes">
+                            <option value="1">1 pessoa</option>
+                            <option value="2">2 pessoas</option>
+                            <option value="3">3 pessoas</option>
+                            <option value="4">4 pessoas</option>
+                            <option value="5">5 pessoas</option>
+                        </select>
+                    </div>
+
+                    <!-- DATA RECEBIDA DO FozM.HTML -->
+                    <div class="campo">
+                        <label for="data-viagem">
+                            Data da viagem
+                        </label>
+
+                        <select id="data-viagem" name="data-viagem">
+                            <option value="10 a 14 de out">
+                                10 a 14 de out
+                            </option>
+
+                            <option value="05 a 09 de nov">
+                                05 a 09 de nov
+                            </option>
+
+                            <option value="21 a 25 de dezembro">
+                                21 a 25 de dezembro
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="necessidades">
+                            Recursos de acessibilidade necessários
+                            (opcional)
+                        </label>
+
+                        <p id="ajuda-acessibilidade" class="ajuda-campo">
+                            Informe o que pode tornar sua viagem
+                            mais confortável. Não é necessário
+                            informar diagnósticos.
+                        </p>
+
+                        <textarea
+                            id="necessidades"
+                            name="necessidades"
+                            rows="4"
+                            aria-describedby="ajuda-acessibilidade"
+                            placeholder="Ex.: transporte para cadeira de rodas ou apoio na comunicação"
+                        ></textarea>
+                    </div>
+
+                    <!-- FORMAS DE PAGAMENTO -->
+                    <fieldset class="metodos">
+
+                        <legend>2. Escolha como pagar</legend>
+
+                        <p class="descricao-etapa">
+                            Selecione uma forma de pagamento.
+                            Você não precisa informar dados bancários agora.
+                        </p>
+
+                        <label class="metodo">
+                            <input
+                                type="radio"
+                                name="metodo"
+                                value="pix"
+                                checked
+                            >
+
+                            <span class="metodo-conteudo">
+                                <strong>Pix</strong>
+                                <small>Pagamento por QR Code ou código Pix</small>
+                            </span>
+                        </label>
+
+                        <label class="metodo">
+                            <input
+                                type="radio"
+                                name="metodo"
+                                value="cartao"
+                            >
+
+                            <span class="metodo-conteudo">
+                                <strong>Cartão de crédito</strong>
+                                <small>Parcelamento sujeito às condições do provedor</small>
+                            </span>
+                        </label>
+
+                        <label class="metodo">
+                            <input
+                                type="radio"
+                                name="metodo"
+                                value="boleto"
+                            >
+
+                            <span class="metodo-conteudo">
+                                <strong>Boleto bancário</strong>
+                                <small>Pagamento conforme o vencimento informado</small>
+                            </span>
+                        </label>
+
+                    </fieldset>
+
+                    <div id="info-metodo"
+                         class="info-metodo"
+                         role="status"
+                         aria-live="polite">
+                    </div>
+
+                    <!-- SEGURANÇA -->
+                    <section class="seguranca"
+                             aria-labelledby="titulo-seguranca">
+
+                        <h3 id="titulo-seguranca">
+                            Proteção dos seus dados
+                        </h3>
+
+                        <p>
+                            Quando o pagamento estiver disponível,
+                            os dados bancários serão enviados diretamente
+                            ao provedor de pagamento seguro.
+                        </p>
+
+                        <p>
+                            O Turismo sem Barreiras não solicitará
+                            dados de cartão por e-mail ou mensagens.
+                        </p>
+
+                    </section>
+
+                    <button
+                        type="submit"
+                        class="btn-finalizar">
+                        Continuar para pagamento
+                    </button>
+
+                    <p class="aviso-botao">
+                        Nenhuma cobrança será realizada nesta versão.
+                    </p>
+
+                    <div
+                        id="mensagem-resultado"
+                        class="mensagem-resultado"
+                        role="status"
+                        aria-live="polite"
+                        tabindex="-1"
+                        hidden>
+                    </div>
+
+                </form>
+            </section>
+
+            <!-- RESUMO DA VIAGEM -->
+            <aside class="resumo-card"
+                   aria-labelledby="titulo-resumo">
+
+                <h2 id="titulo-resumo">Resumo da viagem</h2>
+
+                <img
+                    src="assets/Foz-principal.png"
+                    alt="Paisagem do Foz Iguaçu Macuco"
+                    class="imagem-destino"
+                >
+
+                <h3>Foz Iguaçu Macuco</h3>
+
+                <p class="localizacao">
+                   Foz Iguaçu Macuco - PR
+                </p>
+
+                <div class="resumo-linha">
+                    <span>Duração</span>
+                    <strong>4 dias / 3 noites</strong>
+                </div>
+
+                <div class="resumo-linha">
+                    <span>Data</span>
+                    <strong id="resumo-data">
+                        10 a 14 de out
+                    </strong>
+                </div>
+
+                <div class="resumo-linha">
+                    <span>Preço por pessoa</span>
+                    <strong>R$ 1.790,00</strong>
+                </div>
+
+                <div class="resumo-linha">
+                    <span>Viajantes</span>
+                    <strong id="resumo-viajantes">
+                        1 pessoa
+                    </strong>
+                </div>
+
+                <div class="resumo-total">
+                    <span>Total</span>
+                    <strong id="valor-total">
+                        R$ 1.790,00
+                    </strong>
+                </div>
+
+                <div class="resumo-acessibilidade">
+                    <h4>Recursos de acessibilidade</h4>
+
+                    <ul>
+                        <li>Hospedagem adaptada</li>
+                        <li>Transporte adaptado</li>
+                        <li>Profissionais capacitados</li>
+                    </ul>
+                </div>
+
+                <p class="observacao-preco">
+                    Valor de referência do pacote.
+                    Disponibilidade e preço final
+                    deverão ser confirmados pelo sistema.
+                </p>
+
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="footer-content">
+
+            <div class="footer-logo">
+                <h3>
+                    <img src="assets/logo.png" alt="">
+                    Turismo sem Barreiras
+                </h3>
+
+                <p>
+                    Conectamos viajantes com deficiência
+                    a pequenas agências especializadas
+                    em turismo acessível pelo Brasil.
+                </p>
+            </div>
+
+            <div>
+                <h4>EXPLORAR</h4>
+                <a href="Pacotes.html">Pacotes</a>
+                <a href="Agencia.html">Agências parceiras</a>
+                <a href="Como_funciona.html">Como funciona</a>
+            </div>
+
+            <div>
+                <h4>INSTITUCIONAL</h4>
+                <a href="Sobre_nos.html">Sobre nós</a>
+                <a href="Central_ajuda.html">Central de ajuda</a>
+            </div>
+
+            <div>
+                <h4>FALE CONOSCO</h4>
+                <p>☎ 0800 123 4567</p>
+                <p>✉ ola@turismosembarreiras.com.br</p>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>

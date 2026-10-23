@@ -1,31 +1,23 @@
-/*
-====================================================
-TURISMO SEM BARREIRAS
-JavaScript da página Home
-====================================================
-*/
-
 document.addEventListener("DOMContentLoaded", function () {
 
     /* ==================================================
        ELEMENTOS DA PÁGINA
     ================================================== */
 
-    const campoDestino = document.querySelector(".input-box input");
-    const campoData = document.querySelectorAll(".input-box input")[1];
+    const campoDestino = document.getElementById("destino");
+    const campoData = document.getElementById("data");
 
     const selects = document.querySelectorAll(".input-box select");
 
-    const campoViajantes = selects[0];
-    const campoNecessidade = selects[1];
+    // selects[0] é o destino, por isso os outros começam do 1
+    const campoViajantes = selects[1];
+    const campoNecessidade = selects[2];
 
     const botaoBuscar = document.querySelector(".search");
 
     const cardsDestinos = document.querySelectorAll(".destinos-grid .card");
 
-    const botaoLogin = document.querySelector(".btn-login");
-
-    const botaoChat = document.querySelector(".chat");
+    const botaoChat = document.querySelector(".but-touch");
 
 
     /* ==================================================
@@ -36,30 +28,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
         botaoBuscar.addEventListener("click", function () {
 
-            const destino = campoDestino
-                ? campoDestino.value.trim()
-                : "";
+            const destino = campoDestino ? campoDestino.value.trim() : "";
+            const data = campoData ? campoData.value : "";
+            const viajantes = campoViajantes ? campoViajantes.value : "";
+            const necessidade = campoNecessidade ? campoNecessidade.value : "";
 
-            const data = campoData
-                ? campoData.value
-                : "";
-
-            const viajantes = campoViajantes
-                ? campoViajantes.value
-                : "";
-
-            const necessidade = campoNecessidade
-                ? campoNecessidade.value
-                : "";
-
-
-            /* Verifica se o destino foi preenchido */
+            /* Verifica se o destino foi escolhido */
 
             if (destino === "") {
 
-                mostrarMensagem(
-                    "Digite um destino para realizar a busca."
-                );
+                mostrarMensagem("Escolha um destino para realizar a busca.");
 
                 if (campoDestino) {
                     campoDestino.focus();
@@ -68,7 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-
             /* Verifica a data */
 
             if (campoData && campoData.value !== "") {
@@ -76,16 +53,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 const hoje = new Date();
                 hoje.setHours(0, 0, 0, 0);
 
-                const dataEscolhida = new Date(
-                    campoData.value + "T00:00:00"
-                );
-
+                const dataEscolhida = new Date(campoData.value + "T00:00:00");
 
                 if (dataEscolhida < hoje) {
 
-                    mostrarMensagem(
-                        "Escolha uma data igual ou posterior a hoje."
-                    );
+                    mostrarMensagem("Escolha uma data igual ou posterior a hoje.");
 
                     campoData.focus();
 
@@ -93,12 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             }
 
-
-            /*
-            Guarda os dados da busca.
-            Eles podem ser utilizados posteriormente
-            pela página de Pacotes.
-            */
+            /* Guarda os dados da busca para a página de Pacotes */
 
             const pesquisa = {
                 destino: destino,
@@ -107,38 +74,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 necessidade: necessidade
             };
 
-
-            sessionStorage.setItem(
-                "pesquisaTurismo",
-                JSON.stringify(pesquisa)
-            );
-
-
-            /*
-            Vai para a página de pacotes.
-            */
+            sessionStorage.setItem("pesquisaTurismo", JSON.stringify(pesquisa));
 
             window.location.href = "Pacotes.html";
-        });
-    }
-
-
-    /* ==================================================
-       ENTER NO CAMPO DE DESTINO
-    ================================================== */
-
-    if (campoDestino) {
-
-        campoDestino.addEventListener("keydown", function (event) {
-
-            if (event.key === "Enter") {
-
-                event.preventDefault();
-
-                if (botaoBuscar) {
-                    botaoBuscar.click();
-                }
-            }
         });
     }
 
@@ -155,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
         botao.addEventListener("click", function () {
 
             const titulo = card.querySelector("h3");
@@ -165,13 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
+            let destino = titulo.textContent.trim();
 
-            const destino = titulo.textContent.trim();
-
-
-            /*
-            Guarda o destino escolhido.
-            */
+            // o card se chama "Gramado & Canela", mas o destino é "Gramado"
+            if (destino === "Gramado & Canela") {
+                destino = "Gramado";
+            }
 
             const pesquisa = {
                 destino: destino,
@@ -180,12 +116,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 necessidade: ""
             };
 
-
-            sessionStorage.setItem(
-                "pesquisaTurismo",
-                JSON.stringify(pesquisa)
-            );
-
+            sessionStorage.setItem("pesquisaTurismo", JSON.stringify(pesquisa));
 
             window.location.href = "Pacotes.html";
         });
@@ -203,18 +134,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         link.addEventListener("click", function () {
 
-            /*
-            Remove a classe active dos outros links.
-            */
-
             linksMenu.forEach(function (item) {
                 item.classList.remove("active");
             });
-
-
-            /*
-            Coloca active no link selecionado.
-            */
 
             link.classList.add("active");
 
@@ -227,10 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
        ROLAGEM SUAVE
     ================================================== */
 
-    const linksInternos = document.querySelectorAll(
-        'a[href^="#"]'
-    );
-
+    const linksInternos = document.querySelectorAll('a[href^="#"]');
 
     linksInternos.forEach(function (link) {
 
@@ -238,13 +157,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const destino = link.getAttribute("href");
 
-            if (
-                !destino ||
-                destino === "#"
-            ) {
+            if (!destino || destino === "#") {
                 return;
             }
-
 
             const elemento = document.querySelector(destino);
 
@@ -270,78 +185,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (botaoChat) {
 
-        botaoChat.setAttribute(
-            "aria-label",
-            "Abrir atendimento"
-        );
-
-        botaoChat.setAttribute(
-            "role",
-            "button"
-        );
-
-
         botaoChat.addEventListener("click", function () {
-
             abrirChat();
-
-        });
-
-
-        botaoChat.addEventListener("keydown", function (event) {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-
-                event.preventDefault();
-
-                abrirChat();
-
-            }
-
         });
 
     }
 
 
-    /* ==================================================
-       FUNÇÃO DO CHAT
-    ================================================== */
-
     function abrirChat() {
 
-        /*
-        Se o chat já estiver aberto,
-        não cria outro.
-        */
+        /* Se o chat já estiver aberto, fecha */
 
-        const chatExistente =
-            document.querySelector(".janela-chat");
+        const chatExistente = document.querySelector(".janela-chat");
 
         if (chatExistente) {
-
             chatExistente.remove();
-
             return;
         }
-
 
         const janela = document.createElement("div");
 
         janela.className = "janela-chat";
-
-        janela.setAttribute(
-            "role",
-            "dialog"
-        );
-
-        janela.setAttribute(
-            "aria-label",
-            "Atendimento Turismo sem Barreiras"
-        );
-
+        janela.setAttribute("role", "dialog");
+        janela.setAttribute("aria-label", "Atendimento Turismo sem Barreiras");
 
         janela.innerHTML = `
 
@@ -349,53 +215,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <strong>Turismo sem Barreiras</strong>
 
-                <button
-                    class="fechar-chat"
-                    aria-label="Fechar atendimento"
-                >
+                <button class="fechar-chat" aria-label="Fechar atendimento">
                     ×
                 </button>
 
             </div>
 
-
             <div class="chat-corpo">
 
-                <p>
-                    Olá! 👋
-                </p>
+                <p>Olá! 👋</p>
 
-                <p>
-                    Como podemos ajudar?
-                </p>
+                <p>Como podemos ajudar?</p>
 
-                <button class="opcao-chat">
-                    Encontrar um pacote
-                </button>
+                <button class="opcao-chat">Encontrar um pacote</button>
 
-                <button class="opcao-chat">
-                    Dúvidas sobre acessibilidade
-                </button>
+                <button class="opcao-chat">Dúvidas sobre acessibilidade</button>
 
-                <button class="opcao-chat">
-                    Falar com atendimento
-                </button>
+                <button class="opcao-chat">Falar com atendimento</button>
 
             </div>
 
         `;
 
-
         document.body.appendChild(janela);
 
+        /* Botão fechar */
 
-        /*
-        Botão fechar
-        */
-
-        const fechar =
-            janela.querySelector(".fechar-chat");
-
+        const fechar = janela.querySelector(".fechar-chat");
 
         fechar.addEventListener("click", function () {
 
@@ -407,31 +253,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
         });
 
+        /* Opções do chat */
 
-        /*
-        Opções do chat
-        */
-
-        const opcoes =
-            janela.querySelectorAll(".opcao-chat");
-
+        const opcoes = janela.querySelectorAll(".opcao-chat");
 
         opcoes.forEach(function (opcao) {
 
             opcao.addEventListener("click", function () {
-
-                mostrarMensagem(
-                    "Em breve um atendente poderá ajudar você."
-                );
-
+                mostrarMensagem("Em breve um atendente poderá ajudar você.");
             });
 
         });
 
-
-        /*
-        Fecha com ESC
-        */
+        /* Fecha com ESC */
 
         function fecharComEsc(event) {
 
@@ -439,10 +273,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 janela.remove();
 
-                document.removeEventListener(
-                    "keydown",
-                    fecharComEsc
-                );
+                document.removeEventListener("keydown", fecharComEsc);
 
                 if (botaoChat) {
                     botaoChat.focus();
@@ -452,11 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
 
-
-        document.addEventListener(
-            "keydown",
-            fecharComEsc
-        );
+        document.addEventListener("keydown", fecharComEsc);
 
     }
 
@@ -467,50 +294,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function mostrarMensagem(texto) {
 
-        /*
-        Remove mensagem anterior.
-        */
-
-        const anterior =
-            document.querySelector(".mensagem-site");
+        const anterior = document.querySelector(".mensagem-site");
 
         if (anterior) {
             anterior.remove();
         }
 
+        const mensagem = document.createElement("div");
 
-        const mensagem =
-            document.createElement("div");
-
-
-        mensagem.className =
-            "mensagem-site";
-
-
-        mensagem.setAttribute(
-            "role",
-            "alert"
-        );
-
-
-        mensagem.textContent =
-            texto;
-
+        mensagem.className = "mensagem-site";
+        mensagem.setAttribute("role", "alert");
+        mensagem.textContent = texto;
 
         document.body.appendChild(mensagem);
 
-
-        /*
-        Remove automaticamente depois
-        de alguns segundos.
-        */
-
         setTimeout(function () {
-
-            if (mensagem) {
-                mensagem.remove();
-            }
-
+            mensagem.remove();
         }, 4000);
 
     }
@@ -522,60 +321,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
     cardsDestinos.forEach(function (card) {
 
-        card.setAttribute(
-            "tabindex",
-            "0"
-        );
+        card.setAttribute("tabindex", "0");
 
+        card.addEventListener("keydown", function (event) {
 
-        card.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (
-                    event.key === "Enter" ||
-                    event.key === " "
-                ) {
-
-                    event.preventDefault();
-
-                    const botao =
-                        card.querySelector("button");
-
-                    if (botao) {
-                        botao.click();
-                    }
-
-                }
-
+            // só age se o foco estiver no card, não no botão dentro dele
+            if (event.target !== card) {
+                return;
             }
-        );
 
-    });
+            if (event.key === "Enter" || event.key === " ") {
 
+                event.preventDefault();
 
-    /* ==================================================
-       ACESSIBILIDADE DOS BOTÕES
-    ================================================== */
+                const botao = card.querySelector("button");
 
-    const botoes =
-        document.querySelectorAll("button");
-
-
-    botoes.forEach(function (botao) {
-
-        botao.addEventListener(
-            "keydown",
-            function (event) {
-
-                if (event.key === "Enter") {
-
+                if (botao) {
                     botao.click();
-
                 }
 
             }
-        );
+
+        });
 
     });
 
@@ -588,148 +355,45 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const hoje = new Date();
 
-        const ano =
-            hoje.getFullYear();
+        const ano = hoje.getFullYear();
+        const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+        const dia = String(hoje.getDate()).padStart(2, "0");
 
-        const mes =
-            String(
-                hoje.getMonth() + 1
-            ).padStart(2, "0");
-
-        const dia =
-            String(
-                hoje.getDate()
-            ).padStart(2, "0");
-
-
-        campoData.min =
-            `${ano}-${mes}-${dia}`;
+        campoData.min = `${ano}-${mes}-${dia}`;
 
     }
 
-
-    /* ==================================================
-       RECUPERAR PESQUISA ANTERIOR
-    ================================================== */
-
-    const pesquisaSalva =
-        sessionStorage.getItem(
-            "pesquisaTurismo"
-        );
-
-
-    if (pesquisaSalva) {
-
-        try {
-
-            const pesquisa =
-                JSON.parse(pesquisaSalva);
-
-
-            if (
-                campoDestino &&
-                pesquisa.destino
-            ) {
-
-                campoDestino.value =
-                    pesquisa.destino;
-
-            }
-
-
-            if (
-                campoData &&
-                pesquisa.data
-            ) {
-
-                campoData.value =
-                    pesquisa.data;
-
-            }
-
-
-            if (
-                campoViajantes &&
-                pesquisa.viajantes
-            ) {
-
-                campoViajantes.value =
-                    pesquisa.viajantes;
-
-            }
-
-
-            if (
-                campoNecessidade &&
-                pesquisa.necessidade
-            ) {
-
-                campoNecessidade.value =
-                    pesquisa.necessidade;
-
-            }
-
-        } catch (erro) {
-
-            console.log(
-                "Não foi possível recuperar a pesquisa."
-            );
-
-        }
-
-    }
 
 
     /* ==================================================
        ANIMAÇÃO DOS ELEMENTOS AO ENTRAR NA TELA
     ================================================== */
 
-    const elementosAnimados =
-        document.querySelectorAll(
-            ".card, .passos-grid > div, .agencia-section"
-        );
+    const elementosAnimados = document.querySelectorAll(
+        ".card, .passos-grid > div, .agencia-section"
+    );
 
+    const observador = new IntersectionObserver(
+        function (entradas) {
 
-    const observador =
-        new IntersectionObserver(
-            function (entradas) {
+            entradas.forEach(function (entrada) {
 
-                entradas.forEach(function (entrada) {
+                if (entrada.isIntersecting) {
 
-                    if (entrada.isIntersecting) {
+                    entrada.target.classList.add("aparecer");
 
-                        entrada.target.classList.add(
-                            "aparecer"
-                        );
+                    observador.unobserve(entrada.target);
 
-                        observador.unobserve(
-                            entrada.target
-                        );
+                }
 
-                    }
+            });
 
-                });
-
-            },
-            {
-                threshold: 0.15
-            }
-        );
-
+        },
+        { threshold: 0.15 }
+    );
 
     elementosAnimados.forEach(function (elemento) {
-
         observador.observe(elemento);
-
     });
-
-
-    /* ==================================================
-       LOG
-    ================================================== */
-
-    console.log(
-        "Home.js carregado com sucesso!"
-    );
 
 });

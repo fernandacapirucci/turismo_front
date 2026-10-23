@@ -13,20 +13,20 @@
 <body>
 
     <!-- Barra superior -->
-    <div class="top-bar">
-        <div class="top-container">
+  <div class="top-bar">
+    <div class="top-container">
 
-            <div class="telefone">
-                <img src="assets/telefone.png" alt="Telefone">
-                <span>Central 0800 123 4567</span>
-            </div>
-
-            <div class="links-topo">
-                <a href="#">Seja uma agência parceira</a>
-                <a href="#">Ajuda</a>
-            </div>
-
+        <div class="telefone">
+            <img src="assets/telefone.png" alt="Telefone">
+            <span>Central 0800 123 4567</span>
         </div>
+
+        <div class="links-topo">
+            <a href="Cadastrar.html">Seja uma agência parceira</a>
+            <a href="Central_ajuda.html">Ajuda</a>
+        </div>
+
+    </div>
     </div>
 
     <!-- Cabeçalho -->
@@ -120,14 +120,23 @@
                 <div class="search-fields">
 
                     <div class="input-box">
-                        <img src="assets/destinos.png">
-                        <input type="text" placeholder="Para onde vamos?">
-                    </div>
+    <img src="assets/destinos.png">
+    <select id="destino">
+        <option value="" selected disabled hidden>Para onde vamos?</option>
+        <option>Foz do Iguaçu</option>
+        <option>Salvador</option>
+        <option>Bonito</option>
+        <option>Gramado</option>
+        <option>Lençóis Maranhenses</option>
+        <option>Rio de Janeiro</option>
+        <option>Fernando de Noronha</option>
+    </select>
+</div>
 
-                    <div class="input-box">
-                        <img src="assets/calendario.png">
-                        <input type="text" placeholder="dd/mm/aaaa">
-                    </div>
+<div class="input-box">
+    <img src="assets/calendario.png">
+    <input type="date" id="data">
+</div>
 
                     <div class="input-box">
                         <img src="assets/pessoas.png">
@@ -149,10 +158,9 @@
                         </select>
                     </div>
 
-                    <button class="search">
+                    <button class="search" id="btnBuscar">
                         🔍 Buscar
                     </button>
-
                 </div>
 
             </div>
@@ -160,6 +168,13 @@
         </div>
 
     </section>
+
+    <section class="resultados" id="resultados" hidden>
+    <div class="section-title">
+        <h2 id="tituloResultados"></h2>
+    </div>
+    <div class="destinos-grid" id="listaPacotes"></div>
+</section>
 
 
     <!-- Selo -->
@@ -505,34 +520,32 @@
 
     <!-- Rodapé -->
     <footer>
-
         <div class="footer-content">
-            <div class="footer-logo">
 
-                <h3><img src="assets/logo.png" > Turismo sem Barreiras</h3>
+            <div class="footer-logo">
+                <h3>
+                    <img src="assets/logo.png" alt="">
+                    Turismo sem Barreiras
+                </h3>
+
                 <p>
-                    Conectamos viajantes com deficiência a
-                    pequenas agências especializadas em
-                    turismo acessível pelo Brasil.
+                    Conectamos viajantes com deficiência
+                    a pequenas agências especializadas
+                    em turismo acessível pelo Brasil.
                 </p>
             </div>
 
             <div>
                 <h4>EXPLORAR</h4>
-
                 <a href="Pacotes.html">Pacotes</a>
-                <a href="#">Destinos</a>
                 <a href="Agencia.html">Agências parceiras</a>
                 <a href="Como_funciona.html">Como funciona</a>
             </div>
 
             <div>
                 <h4>INSTITUCIONAL</h4>
-
                 <a href="Sobre_nos.html">Sobre nós</a>
                 <a href="Central_ajuda.html">Central de ajuda</a>
-                <a href="#">Selo de Acessibilidade</a>
-                <a href="#">Termos & Privacidade</a>
             </div>
 
             <div>
@@ -542,8 +555,7 @@
             </div>
 
         </div>
-        </footer>
-
+    </footer>
 
     <script src="javaScript/Home.js"></script>
 

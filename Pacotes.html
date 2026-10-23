@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="assets/x-icon" href="assets/favicon-logo.png">
+    <link rel="icon" type="image/png" href="assets/favicon-logo.png">
     <title>Pacotes - Turismo sem Barreiras</title>
 
     <link rel="stylesheet" href="style/Pacotes.css">
@@ -22,8 +22,8 @@
         </div>
 
         <div class="links-topo">
-            <a href="#">Seja uma agência parceira</a>
-            <a href="#">Ajuda</a>
+            <a href="Cadastrar.html">Seja uma agência parceira</a>
+            <a href="Central_ajuda.html">Ajuda</a>
         </div>
 
     </div>
@@ -35,61 +35,59 @@
 
         <div class="logo-area">
 
-            <img src="assets/logo.png" >
+            <img src="assets/logo.png" alt="">
 
             <div class="logo-text">
                 <h1>Turismo <span>sem Barreiras</span></h1>
                 <p>Viagens acessíveis pelo Brasil</p>
             </div>
 
-            </div>
-            <a href="login.html" class="btn-login">
-                <img src="assets/perfil.png" >
-                Entrar ou cadastrar
-            </a>
-            </div>
+        </div>
 
+        <a href="login.html" class="btn-login">
+            <img src="assets/perfil.png" alt="">
+            Entrar ou cadastrar
+        </a>
+
+    </div>
 </header>
 
 <!-- Menu -->
-    <div class="menu-container">
-        <nav id="menu">
+<div class="menu-container">
+    <nav id="menu">
 
-            <a href="Home.html">
-                <img src="assets/inicio.png">
-                <span>Início</span>
-            </a>
+        <a href="Home.html">
+            <img src="assets/inicio.png" alt="">
+            <span>Início</span>
+        </a>
 
-            <a href="Pacotes.html" class="active">
-                <img src="assets/pacotes.png">
-                <span>Pacotes</span>
-            </a>
+        <a href="Pacotes.html" class="active">
+            <img src="assets/pacotes.png" alt="">
+            <span>Pacotes</span>
+        </a>
 
+        <a href="Agencia.html">
+            <img src="assets/agencias.png" alt="">
+            <span>Agências</span>
+        </a>
 
-            <a href="Agencia.html">
-                <img src="assets/agencias.png">
-                <span>Agências</span>
-            </a>
+        <a href="Como_funciona.html">
+            <img src="assets/como-funciona.png" alt="">
+            <span>Como funciona</span>
+        </a>
 
+        <a href="Sobre_nos.html">
+            <img src="assets/sobre-nos.png" alt="">
+            <span>Sobre nós</span>
+        </a>
 
-            <a href="Como_funciona.html">
-                <img src="assets/como-funciona.png">
-                <span>Como funciona</span>
-            </a>
+        <a href="Central_ajuda.html">
+            <img src="assets/centraldeajuda.png" alt="">
+            <span>Central de ajuda</span>
+        </a>
 
-            <a href="Sobre_nos.html">
-                <img src="assets/sobre-nos.png">
-                <span>Sobre nós</span>
-            </a>
-
-            <a href="Central_ajuda.html">
-                <img src="assets/centraldeajuda.png">
-                <span>Central de ajuda</span>
-            </a>
-
-            
-        </nav>
-    </div>
+    </nav>
+</div>
 
 
 <!-- ================= CONTEÚDO ================= -->
@@ -117,7 +115,7 @@
 
             <label>REGIÃO</label>
 
-            <select>
+            <select aria-label="Região">
                 <option>Todas</option>
                 <option>Sul</option>
                 <option>Sudeste</option>
@@ -129,7 +127,7 @@
 
             <label>TIPO DE DEFICIÊNCIA ATENDIDA</label>
 
-            <select>
+            <select aria-label="Tipo de deficiência atendida">
                 <option>Qualquer</option>
                 <option>Visual</option>
                 <option>Auditiva</option>
@@ -141,40 +139,39 @@
             <label>ACESSIBILIDADE</label>
 
             <div class="check">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Transporte adaptado">
                 <span>Transporte adaptado</span>
             </div>
 
             <div class="check">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Hospedagem acessível">
                 <span>Hospedagem acessível</span>
             </div>
 
             <div class="check">
-                <input type="checkbox">
+                <input type="checkbox" aria-label="Passeio acessível">
                 <span>Passeio acessível</span>
             </div>
 
 
             <label>PREÇO MÁXIMO (R$)</label>
 
-            <select>
+            <select aria-label="Preço máximo">
                 <option>Qualquer</option>
-                <option>R$ 1.500</option>
                 <option>R$ 2.000</option>
                 <option>R$ 3.000</option>
+                <option>R$ 4.000</option>
                 <option>R$ 5.000</option>
             </select>
 
 
             <label>DURAÇÃO</label>
 
-            <select>
+            <select aria-label="Duração">
                 <option>Qualquer</option>
                 <option>Até 3 dias</option>
                 <option>4 dias</option>
                 <option>5 dias</option>
-                <option>7 dias</option>
             </select>
 
         </aside>
@@ -188,7 +185,7 @@
 
                 <span>Ordenar por</span>
 
-                <select>
+                <select aria-label="Ordenar por">
                     <option>Próxima saída</option>
                     <option>Menor preço</option>
                     <option>Maior preço</option>
@@ -203,7 +200,7 @@
 
                 <!-- PACOTE 1 -->
 
-                <article class="pacote-card">
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -211,7 +208,7 @@
 
                         <span class="selo ouro">● Selo Ouro</span>
 
-                        <span class="local">Foz de Iguaçu - PR</span>
+                        <span class="local">Foz do Iguaçu - PR</span>
 
                     </div>
 
@@ -219,7 +216,7 @@
 
                         <div class="titulo-avaliacao">
 
-                            <h3>Foz de Iguaçu - Cataratas e Itaipu</h3>
+                            <h3>Foz do Iguaçu - Cataratas e Itaipu</h3>
 
                             <span>★ 4.9</span>
 
@@ -239,14 +236,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
                                 <small>5 DIAS PRÓX. SAÍDA</small>
-                                <strong>10 de out.</strong>
+                                <strong>14 de nov.</strong>
                             </div>
 
                             <div>
@@ -265,7 +262,7 @@
 
                 <!-- PACOTE 2 -->
 
-                <article class="pacote-card">
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -301,14 +298,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
-                                <small>5 DIAS PRÓX. SAÍDA</small>
-                                <strong>10 de out.</strong>
+                                <small>4 DIAS PRÓX. SAÍDA</small>
+                                <strong>20 de nov.</strong>
                             </div>
 
                             <div>
@@ -327,7 +324,7 @@
 
                 <!-- PACOTE 3 -->
 
-                <article class="pacote-card">
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -335,7 +332,7 @@
 
                         <span class="selo prata">● Selo Prata</span>
 
-                        <span class="local">Foz de Iguaçu - PR</span>
+                        <span class="local">Foz do Iguaçu - PR</span>
 
                     </div>
 
@@ -363,14 +360,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
                                 <small>3 DIAS PRÓX. SAÍDA</small>
-                                <strong>21 de ago.</strong>
+                                <strong>28 de nov.</strong>
                             </div>
 
                             <div>
@@ -389,7 +386,7 @@
 
                 <!-- PACOTE 4 -->
 
-                <article class="pacote-card">
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -425,14 +422,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
                                 <small>4 DIAS PRÓX. SAÍDA</small>
-                                <strong>21 de ago.</strong>
+                                <strong>5 de dez.</strong>
                             </div>
 
                             <div>
@@ -451,7 +448,7 @@
 
                 <!-- PACOTE 5 -->
 
-                <article class="pacote-card">
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -459,7 +456,7 @@
 
                         <span class="selo prata">● Selo Prata</span>
 
-                        <span class="local">Gramado & Canela - RS</span>
+                        <span class="local">Gramado &amp; Canela - RS</span>
 
                     </div>
 
@@ -487,14 +484,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
                                 <small>5 DIAS PRÓX. SAÍDA</small>
-                                <strong>10 de out.</strong>
+                                <strong>12 de dez.</strong>
                             </div>
 
                             <div>
@@ -513,7 +510,7 @@
 
                 <!-- PACOTE 6 -->
 
-                <article class="pacote-card">
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -549,14 +546,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
-                                <small>5 DIAS PRÓX. SAÍDA</small>
-                                <strong>10 de out.</strong>
+                                <small>4 DIAS PRÓX. SAÍDA</small>
+                                <strong>19 de dez.</strong>
                             </div>
 
                             <div>
@@ -574,7 +571,8 @@
 
 
                 <!-- PACOTE 7 -->
-                <article class="pacote-card">
+
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -610,14 +608,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
                                 <small>5 DIAS PRÓX. SAÍDA</small>
-                                <strong>12 de set.</strong>
+                                <strong>9 de jan.</strong>
                             </div>
 
                             <div>
@@ -633,9 +631,10 @@
 
                 </article>
 
+
                 <!-- PACOTE 8 -->
 
-                <article class="pacote-card">
+                <article class="pacote-card" data-deficiencias="fisica,visual,auditiva,intelectual">
 
                     <div class="imagem-pacote">
 
@@ -671,14 +670,14 @@
                         </div>
 
                         <p class="atendimento">
-                            ◉ Atende: Cadeirante, Mobilidade reduzida, ...
+                            ◉ Atende: Física, Visual, Auditiva, Intelectual
                         </p>
 
                         <div class="preco">
 
                             <div>
                                 <small>5 DIAS PRÓX. SAÍDA</small>
-                                <strong>12 de set.</strong>
+                                <strong>16 de jan.</strong>
                             </div>
 
                             <div>
@@ -714,44 +713,42 @@
 <!-- Rodapé -->
 
 <footer>
+    <div class="footer-content">
 
-        <div class="footer-content">
-            <div class="footer-logo">
+        <div class="footer-logo">
+            <h3>
+                <img src="assets/logo.png" alt="">
+                Turismo sem Barreiras
+            </h3>
 
-                <h3><img src="assets/logo.png" > Turismo sem Barreiras</h3>
-                <p>
-                    Conectamos viajantes com deficiência a
-                    pequenas agências especializadas em
-                    turismo acessível pelo Brasil.
-                </p>
-            </div>
-
-            <div>
-                <h4>EXPLORAR</h4>
-
-                <a href="Pacotes.html">Pacotes</a>
-                <a href="#">Destinos</a>
-                <a href="Agencia.html">Agências parceiras</a>
-                <a href="Como_funciona.html">Como funciona</a>
-            </div>
-
-            <div>
-                <h4>INSTITUCIONAL</h4>
-
-                <a href="Sobre_nos.html">Sobre nós</a>
-                <a href="Central_ajuda.html">Central de ajuda</a>
-                <a href="#">Selo de Acessibilidade</a>
-                <a href="#">Termos & Privacidade</a>
-            </div>
-
-            <div>
-                <h4>FALE CONOSCO</h4>
-                <p>☎ 0800 123 4567</p>
-                <p>✉ ola@turismosembarreiras.com.br</p>
-            </div>
-
+            <p>
+                Conectamos viajantes com deficiência
+                a pequenas agências especializadas
+                em turismo acessível pelo Brasil.
+            </p>
         </div>
-        </footer>
+
+        <div>
+            <h4>EXPLORAR</h4>
+            <a href="Pacotes.html">Pacotes</a>
+            <a href="Agencia.html">Agências parceiras</a>
+            <a href="Como_funciona.html">Como funciona</a>
+        </div>
+
+        <div>
+            <h4>INSTITUCIONAL</h4>
+            <a href="Sobre_nos.html">Sobre nós</a>
+            <a href="Central_ajuda.html">Central de ajuda</a>
+        </div>
+
+        <div>
+            <h4>FALE CONOSCO</h4>
+            <p>☎ 0800 123 4567</p>
+            <p>✉ ola@turismosembarreiras.com.br</p>
+        </div>
+
+    </div>
+</footer>
 
 <script src="javaScript/Pacotes.js"></script>
 </body>

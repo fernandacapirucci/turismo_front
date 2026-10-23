@@ -7,78 +7,81 @@ JavaScript da página de Pacotes
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* ==================================================
-       ELEMENTOS
-    ================================================== */
+    /* ================= ELEMENTOS ================= */
 
-    const cards = Array.from(
-        document.querySelectorAll(".pacote-card")
-    );
-
+    const cards = Array.from(document.querySelectorAll(".pacote-card"));
     const grid = document.querySelector(".pacotes-grid");
+    const filtros = document.querySelectorAll(".filtros select");
+    const checkboxes = document.querySelectorAll(".check input[type='checkbox']");
+    const ordenacao = document.querySelector(".ordenacao select");
+    const contador = document.querySelector(".titulo-pagina p");
 
-    const filtros = document.querySelectorAll(
-        ".filtros select"
-    );
+    /* ================= ACESSIBILIDADE INICIAL ================= */
 
-    const checkboxes = document.querySelectorAll(
-        ".check input[type='checkbox']"
-    );
+    // Leitor de tela anuncia a mudança do contador
+    if (contador) {
+        contador.setAttribute("role", "status");
+        contador.setAttribute("aria-live", "polite");
+        contador.setAttribute("aria-atomic", "true");
+    }
 
-    const ordenacao = document.querySelector(
-        ".ordenacao select"
-    );
+    cards.forEach(function (card) {
 
-    const contador = document.querySelector(
-        ".titulo-pagina p"
-    );
+        const titulo = card.querySelector("h3").textContent.trim();
 
+        // Botões "Ver detalhes" distinguíveis entre si
+        const botao = card.querySelector("button");
+        if (botao) {
+            botao.setAttribute("aria-label", "Ver detalhes: " + titulo);
+        }
 
-    /* ==================================================
-       GUARDAR ORDEM ORIGINAL
-    ================================================== */
+        // Nota lida como "Avaliação 4.9 de 5"
+        const nota = card.querySelector(".titulo-avaliacao span");
+        if (nota) {
+            const valor = nota.textContent.replace(/[^\d.]/g, "");
+            nota.setAttribute("aria-label", "Avaliação " + valor + " de 5");
+        }
 
-    cards.forEach(function (card, index) {
-
-        card.dataset.indice = index;
-
-        card.dataset.ordemOriginal = index;
+        // Emojis das tags não são lidos em voz alta
+        card.querySelectorAll(".tags span").forEach(function (tag) {
+            const texto = tag.textContent.trim();
+            const espaco = texto.indexOf(" ");
+            if (espaco > 0) {
+                const emoji = document.createElement("span");
+                emoji.setAttribute("aria-hidden", "true");
+                emoji.textContent = texto.slice(0, espaco) + " ";
+                tag.textContent = texto.slice(espaco + 1);
+                tag.prepend(emoji);
+            }
+        });
 
     });
 
+    /* ================= GUARDAR ORDEM ORIGINAL ================= */
 
-    /* ==================================================
-       RECUPERAR PESQUISA DA HOME
-    ================================================== */
+    cards.forEach(function (card, index) {
+        card.dataset.indice = index;
+        card.dataset.ordemOriginal = index;
+    });
+
+    /* ================= PESQUISA DA HOME ================= */
 
     let pesquisaHome = null;
 
-    const pesquisaSalva =
-        sessionStorage.getItem("pesquisaTurismo");
-
+    const pesquisaSalva = sessionStorage.getItem("pesquisaTurismo");
 
     if (pesquisaSalva) {
-
         try {
-
-            pesquisaHome = JSON.parse(
-                pesquisaSalva
-            );
-
+            pesquisaHome = JSON.parse(pesquisaSalva);
         } catch (erro) {
-
-            console.log(
-                "Erro ao recuperar pesquisa da Home."
-            );
-
+            console.log("Erro ao recuperar pesquisa da Home.");
         }
 
+        // usa a pesquisa uma vez só (F5 ou clicar em "Pacotes" mostra tudo)
+        sessionStorage.removeItem("pesquisaTurismo");
     }
 
-
-    /* ==================================================
-       NORMALIZAR TEXTO
-    ================================================== */
+    /* ================= NORMALIZAR TEXTO ================= */
 
     function normalizar(texto) {
 
@@ -95,56 +98,103 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-
-    /* ==================================================
-       CONVERTER NECESSIDADE DA HOME
-    ================================================== */
+    /* ================= CONVERTER DEFICIÊNCIA ================= */
 
     function converterDeficiencia(texto) {
 
         const valor = normalizar(texto);
 
-
         if (
             valor.includes("fisic") ||
             valor.includes("cadeir") ||
-            valor.includes("mobil")
+            valor.includes("mobil") ||
+            valor.includes("motor")
         ) {
-
             return "fisica";
-
         }
-
 
         if (valor.includes("visual")) {
-
             return "visual";
-
         }
-
 
         if (valor.includes("auditiv")) {
-
             return "auditiva";
-
         }
-
 
         if (valor.includes("intelect")) {
-
             return "intelectual";
-
         }
-
 
         return "";
 
     }
 
+    /* ================= DADOS DOS PACOTES (lidos do HTML) ================= */
 
-    /* ==================================================
-       ENCONTRAR DESTINO
-    ================================================== */
+    const regioesPorEstado = {
+        PR: "Sul", RS: "Sul", SC: "Sul",
+        SP: "Sudeste", RJ: "Sudeste", MG: "Sudeste", ES: "Sudeste",
+        BA: "Nordeste", MA: "Nordeste", PE: "Nordeste", CE: "Nordeste",
+        RN: "Nordeste", PB: "Nordeste", AL: "Nordeste", SE: "Nordeste", PI: "Nordeste",
+        MS: "Centro-Oeste", MT: "Centro-Oeste", GO: "Centro-Oeste", DF: "Centro-Oeste",
+        AM: "Norte", PA: "Norte", AC: "Norte", RO: "Norte", RR: "Norte", AP: "Norte", TO: "Norte"
+    };
+
+    const nomesDeficiencia = {
+        fisica: "Física",
+        visual: "Visual",
+        auditiva: "Auditiva",
+        intelectual: "Intelectual"
+    };
+
+    const dadosPacotes = cards.map(function (card) {
+
+        const local = card.querySelector(".local").textContent.trim();
+        const uf = local.slice(-2).toUpperCase();
+
+        const preco = parseInt(
+            card.querySelectorAll(".preco strong")[1].textContent.replace(/\D/g, "")
+        );
+
+        const duracao = parseInt(card.querySelector(".preco small").textContent);
+
+        const avaliacao = parseFloat(
+            card.querySelector(".titulo-avaliacao span").textContent.replace(/[^\d.]/g, "")
+        );
+
+        const tags = normalizar(card.querySelector(".tags").textContent);
+
+        // Lê do atributo data-deficiencias (aceita maiúsculas e minúsculas)
+        const deficiencias = (card.dataset.deficiencias || "")
+            .split(",")
+            .map(converterDeficiencia)
+            .filter(Boolean);
+
+        // Atualiza o texto "Atende:" do card com a lista real
+        const atendimento = card.querySelector(".atendimento");
+
+        if (atendimento) {
+            atendimento.textContent =
+                "◉ Atende: " +
+                deficiencias.map(function (d) {
+                    return nomesDeficiencia[d];
+                }).join(", ");
+        }
+
+        return {
+            regiao: regioesPorEstado[uf] || "",
+            deficiencias: deficiencias,
+            preco: preco,
+            duracao: duracao,
+            avaliacao: avaliacao,
+            transporte: tags.includes("transporte adaptado"),
+            hospedagem: tags.includes("hospedagem"),
+            passeio: tags.includes("passeio acessivel")
+        };
+
+    });
+
+    /* ================= ENCONTRAR DESTINO ================= */
 
     function destinoCombina(card, destino) {
 
@@ -152,76 +202,35 @@ document.addEventListener("DOMContentLoaded", function () {
             return true;
         }
 
-
         const busca = normalizar(destino);
 
+        // Procura só no título e no local (não na descrição)
         const textoCard = normalizar(
-            card.textContent
+            card.querySelector("h3").textContent + " " +
+            card.querySelector(".local").textContent
         );
-
-
-        /*
-        Se o destino digitado aparecer
-        no card, considera compatível.
-        */
 
         if (textoCard.includes(busca)) {
             return true;
         }
 
-
-        /*
-        Alguns nomes podem ser digitados
-        de formas diferentes.
-        */
-
+        // Nomes que podem estar escritos de outro jeito no card
         const equivalencias = {
-
-            "rio": "rio de janeiro",
-
-            "rio de janeiro": "rio",
-
-            "foz": "foz do iguacu",
-
-            "foz do iguacu": "foz",
-
-            "lencois": "lencois maranhenses",
-
-            "lencois maranhenses": "lencois",
-
-            "fernando": "fernando de noronha",
-
-            "fernando de noronha": "fernando",
-
-            "bonito": "bonito",
-
+            "foz do iguacu": "foz de iguacu",
             "gramado": "gramado",
-
-            "salvador": "salvador"
-
+            "rio de janeiro": "rio de janeiro",
+            "lencois maranhenses": "lencois",
+            "fernando de noronha": "noronha"
         };
 
-
-        if (
+        return !!(
             equivalencias[busca] &&
-            textoCard.includes(
-                equivalencias[busca]
-            )
-        ) {
-
-            return true;
-
-        }
-
-
-        return false;
+            textoCard.includes(equivalencias[busca])
+        );
 
     }
 
-
-    /* ==================================================
-       MOSTRAR PESQUISA DA HOME
-    ================================================== */
+    /* ================= MOSTRAR PESQUISA DA HOME ================= */
 
     function mostrarPesquisaHome() {
 
@@ -229,410 +238,159 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        const destino = pesquisaHome.destino || "";
 
-        const destino =
-            pesquisaHome.destino || "";
+        // "Qualquer necessidade" não conta como necessidade
+        const necessidade = converterDeficiencia(pesquisaHome.necessidade)
+            ? pesquisaHome.necessidade
+            : "";
 
-        const necessidade =
-            pesquisaHome.necessidade || "";
-
-
-        if (
-            destino === "" &&
-            necessidade === ""
-        ) {
+        if (destino === "" && necessidade === "") {
             return;
         }
 
-
-        let resumo =
-            document.querySelector(
-                ".resumo-pesquisa"
-            );
-
+        let resumo = document.querySelector(".resumo-pesquisa");
 
         if (!resumo) {
 
-            resumo =
-                document.createElement("div");
+            resumo = document.createElement("div");
+            resumo.className = "resumo-pesquisa";
+            resumo.setAttribute("role", "status");
 
-            resumo.className =
-                "resumo-pesquisa";
-
-
-            const titulo =
-                document.querySelector(
-                    ".titulo-pagina"
-                );
-
+            const titulo = document.querySelector(".titulo-pagina");
 
             if (titulo) {
-
-                titulo.appendChild(
-                    resumo
-                );
-
+                titulo.appendChild(resumo);
             }
 
         }
 
-
         let texto = "Pesquisa realizada";
 
         if (destino) {
-
-            texto +=
-                " para: " + destino;
-
+            texto += " para: " + destino;
         }
-
 
         if (necessidade) {
-
-            texto +=
-                " | Necessidade: " +
-                necessidade;
-
+            texto += " | Necessidade: " + necessidade;
         }
-
 
         resumo.textContent = texto;
 
     }
 
-
-    /* ==================================================
-       FILTRO PRINCIPAL
-    ================================================== */
+    /* ================= FILTRO PRINCIPAL ================= */
 
     function aplicarFiltros() {
 
-        const regiaoSelecionada =
-            filtros[0]
-                ? filtros[0].value
-                : "Todas";
+        const regiaoSelecionada = filtros[0] ? filtros[0].value : "Todas";
+        const deficienciaSelecionada = filtros[1] ? filtros[1].value : "Qualquer";
+        const precoSelecionado = filtros[2] ? filtros[2].value : "Qualquer";
+        const duracaoSelecionada = filtros[3] ? filtros[3].value : "Qualquer";
 
+        let precoMaximo = Infinity;
 
-        const deficienciaSelecionada =
-            filtros[1]
-                ? filtros[1].value
-                : "Qualquer";
-
-
-        const precoSelecionado =
-            filtros[2]
-                ? filtros[2].value
-                : "Qualquer";
-
-
-        const duracaoSelecionada =
-            filtros[3]
-                ? filtros[3].value
-                : "Qualquer";
-
-
-        /*
-        Preço máximo
-        */
-
-        let precoMaximo =
-            Infinity;
-
-
-        if (
-            precoSelecionado !==
-            "Qualquer"
-        ) {
-
-            precoMaximo =
-                parseInt(
-                    precoSelecionado
-                        .replace(/\D/g, "")
-                );
-
+        if (precoSelecionado !== "Qualquer") {
+            precoMaximo = parseInt(precoSelecionado.replace(/\D/g, ""));
         }
 
+        let duracaoFiltro = null;
 
-        /*
-        Duração
-        */
-
-        let duracaoFiltro =
-            null;
-
-
-        if (
-            duracaoSelecionada ===
-            "Até 3 dias"
-        ) {
-
+        if (duracaoSelecionada === "Até 3 dias") {
             duracaoFiltro = 3;
-
+        } else if (duracaoSelecionada !== "Qualquer") {
+            duracaoFiltro = parseInt(duracaoSelecionada);
         }
 
-        else if (
-            duracaoSelecionada !==
-            "Qualquer"
-        ) {
+        const necessidadeHome = pesquisaHome
+            ? converterDeficiencia(pesquisaHome.necessidade)
+            : "";
 
-            duracaoFiltro =
-                parseInt(
-                    duracaoSelecionada
-                );
+        const destinoHome = pesquisaHome ? pesquisaHome.destino : "";
 
-        }
-
-
-        /*
-        Necessidade da Home
-        */
-
-        const necessidadeHome =
-            pesquisaHome
-                ? converterDeficiencia(
-                    pesquisaHome.necessidade
-                )
-                : "";
-
-
-        /*
-        Destino da Home
-        */
-
-        const destinoHome =
-            pesquisaHome
-                ? pesquisaHome.destino
-                : "";
-
-
-        let quantidade =
-            0;
-
+        let quantidade = 0;
 
         cards.forEach(function (card, index) {
 
-            const dados =
-                dadosPacotes[index];
-
+            const dados = dadosPacotes[index];
 
             let mostrar = true;
 
-
             /* REGIÃO */
-
             if (
-                regiaoSelecionada !==
-                "Todas" &&
-                dados.regiao !==
-                regiaoSelecionada
+                regiaoSelecionada !== "Todas" &&
+                dados.regiao !== regiaoSelecionada
             ) {
-
                 mostrar = false;
-
             }
-
 
             /* DEFICIÊNCIA DO FILTRO */
-
-            if (
-                mostrar &&
-                deficienciaSelecionada !==
-                "Qualquer"
-            ) {
-
-                const deficiencia =
-                    converterDeficiencia(
-                        deficienciaSelecionada
-                    );
-
-
-                if (
-                    !dados.deficiencias.includes(
-                        deficiencia
-                    )
-                ) {
-
+            if (mostrar && deficienciaSelecionada !== "Qualquer") {
+                const deficiencia = converterDeficiencia(deficienciaSelecionada);
+                if (!dados.deficiencias.includes(deficiencia)) {
                     mostrar = false;
-
                 }
-
             }
 
-
-            /* DEFICIÊNCIA VINDO DA HOME */
-
-            if (
-                mostrar &&
-                necessidadeHome
-            ) {
-
-                if (
-                    !dados.deficiencias.includes(
-                        necessidadeHome
-                    )
-                ) {
-
+            /* DEFICIÊNCIA VINDA DA HOME */
+            if (mostrar && necessidadeHome) {
+                if (!dados.deficiencias.includes(necessidadeHome)) {
                     mostrar = false;
-
                 }
-
             }
-
 
             /* DESTINO VINDO DA HOME */
-
-            if (
-                mostrar &&
-                destinoHome
-            ) {
-
-                if (
-                    !destinoCombina(
-                        card,
-                        destinoHome
-                    )
-                ) {
-
+            if (mostrar && destinoHome) {
+                if (!destinoCombina(card, destinoHome)) {
                     mostrar = false;
-
                 }
-
             }
-
 
             /* PREÇO */
-
-            if (
-                mostrar &&
-                dados.preco >
-                precoMaximo
-            ) {
-
+            if (mostrar && dados.preco > precoMaximo) {
                 mostrar = false;
-
             }
-
 
             /* DURAÇÃO */
-
-            if (
-                mostrar &&
-                duracaoFiltro !== null
-            ) {
-
-                if (
-                    duracaoSelecionada ===
-                    "Até 3 dias"
-                ) {
-
-                    if (
-                        dados.duracao > 3
-                    ) {
-
+            if (mostrar && duracaoFiltro !== null) {
+                if (duracaoSelecionada === "Até 3 dias") {
+                    if (dados.duracao > 3) {
                         mostrar = false;
-
                     }
-
+                } else if (dados.duracao !== duracaoFiltro) {
+                    mostrar = false;
                 }
-
-                else {
-
-                    if (
-                        dados.duracao !==
-                        duracaoFiltro
-                    ) {
-
-                        mostrar = false;
-
-                    }
-
-                }
-
             }
-
 
             /* ACESSIBILIDADE */
-
-            if (
-                mostrar &&
-                checkboxes[0] &&
-                checkboxes[0].checked
-            ) {
-
-                if (!dados.transporte) {
-
-                    mostrar = false;
-
-                }
-
+            if (mostrar && checkboxes[0] && checkboxes[0].checked && !dados.transporte) {
+                mostrar = false;
             }
 
-
-            if (
-                mostrar &&
-                checkboxes[1] &&
-                checkboxes[1].checked
-            ) {
-
-                if (!dados.hospedagem) {
-
-                    mostrar = false;
-
-                }
-
+            if (mostrar && checkboxes[1] && checkboxes[1].checked && !dados.hospedagem) {
+                mostrar = false;
             }
 
-
-            if (
-                mostrar &&
-                checkboxes[2] &&
-                checkboxes[2].checked
-            ) {
-
-                if (!dados.passeio) {
-
-                    mostrar = false;
-
-                }
-
+            if (mostrar && checkboxes[2] && checkboxes[2].checked && !dados.passeio) {
+                mostrar = false;
             }
 
-
-            /* MOSTRAR OU ESCONDER */
+            /* MOSTRAR OU ESCONDER (hidden esconde também de leitores de tela e do teclado) */
+            card.hidden = !mostrar;
 
             if (mostrar) {
-
-                card.style.display = "";
-
                 quantidade++;
-
-            }
-
-            else {
-
-                card.style.display = "none";
-
             }
 
         });
 
-
         ordenarPacotes();
-
-        atualizarContador(
-            quantidade
-        );
-
-        verificarNenhumResultado(
-            quantidade
-        );
+        atualizarContador(quantidade);
+        verificarNenhumResultado(quantidade);
 
     }
 
-
-    /* ==================================================
-       ORDENAÇÃO
-    ================================================== */
+    /* ================= ORDENAÇÃO ================= */
 
     function ordenarPacotes() {
 
@@ -640,327 +398,154 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        const opcao = ordenacao.value;
 
-        const opcao =
-            ordenacao.value;
+        const cardsOrdenados = [...cards];
 
+        cardsOrdenados.sort(function (a, b) {
 
-        const cardsOrdenados =
-            [...cards];
+            const dadosA = dadosPacotes[parseInt(a.dataset.indice)];
+            const dadosB = dadosPacotes[parseInt(b.dataset.indice)];
 
-
-        cardsOrdenados.sort(
-            function (a, b) {
-
-                const dadosA =
-                    dadosPacotes[
-                        parseInt(
-                            a.dataset.indice
-                        )
-                    ];
-
-
-                const dadosB =
-                    dadosPacotes[
-                        parseInt(
-                            b.dataset.indice
-                        )
-                    ];
-
-
-                if (
-                    opcao ===
-                    "Menor preço"
-                ) {
-
-                    return (
-                        dadosA.preco -
-                        dadosB.preco
-                    );
-
-                }
-
-
-                if (
-                    opcao ===
-                    "Maior preço"
-                ) {
-
-                    return (
-                        dadosB.preco -
-                        dadosA.preco
-                    );
-
-                }
-
-
-                if (
-                    opcao ===
-                    "Melhor avaliação"
-                ) {
-
-                    return (
-                        dadosB.avaliacao -
-                        dadosA.avaliacao
-                    );
-
-                }
-
-
-                /*
-                Próxima saída:
-                mantém a ordem original.
-                */
-
-                return (
-                    parseInt(
-                        a.dataset.ordemOriginal
-                    ) -
-                    parseInt(
-                        b.dataset.ordemOriginal
-                    )
-                );
-
+            if (opcao === "Menor preço") {
+                return dadosA.preco - dadosB.preco;
             }
-        );
 
-
-        cardsOrdenados.forEach(
-            function (card) {
-
-                grid.appendChild(card);
-
+            if (opcao === "Maior preço") {
+                return dadosB.preco - dadosA.preco;
             }
-        );
+
+            if (opcao === "Melhor avaliação") {
+                return dadosB.avaliacao - dadosA.avaliacao;
+            }
+
+            return (
+                parseInt(a.dataset.ordemOriginal) -
+                parseInt(b.dataset.ordemOriginal)
+            );
+
+        });
+
+        cardsOrdenados.forEach(function (card) {
+            grid.appendChild(card);
+        });
 
     }
 
+    /* ================= CONTADOR ================= */
 
-    /* ==================================================
-       CONTADOR
-    ================================================== */
-
-    function atualizarContador(
-        quantidade
-    ) {
+    function atualizarContador(quantidade) {
 
         if (!contador) {
             return;
         }
 
-
         if (quantidade === 0) {
-
-            contador.textContent =
-                "Nenhum pacote encontrado.";
-
+            contador.textContent = "Nenhum pacote encontrado.";
             return;
-
         }
-
 
         contador.textContent =
             quantidade +
-            (
-                quantidade === 1
-                    ? " pacote encontrado"
-                    : " pacotes encontrados"
-            ) +
+            (quantidade === 1 ? " pacote encontrado" : " pacotes encontrados") +
             " com acessibilidade auditada";
 
     }
 
+    /* ================= NENHUM RESULTADO ================= */
 
-    /* ==================================================
-       NENHUM RESULTADO
-    ================================================== */
+    function verificarNenhumResultado(quantidade) {
 
-    function verificarNenhumResultado(
-        quantidade
-    ) {
+        let mensagem = document.querySelector(".sem-resultados");
 
-        let mensagem =
-            document.querySelector(
-                ".sem-resultados"
-            );
-
-
-        if (
-            quantidade === 0
-        ) {
+        if (quantidade === 0) {
 
             if (!mensagem) {
 
-                mensagem =
-                    document.createElement(
-                        "div"
-                    );
+                mensagem = document.createElement("div");
+                mensagem.className = "sem-resultados";
 
-                mensagem.className =
-                    "sem-resultados";
-
-                mensagem.setAttribute(
-                    "role",
-                    "status"
-                );
-
+                // Sem role="status": o contador já anuncia "Nenhum pacote encontrado"
                 mensagem.innerHTML = `
-                    <strong>
-                        Nenhum pacote encontrado
-                    </strong>
-
-                    <p>
-                        Tente mudar os filtros
-                        ou pesquisar outro destino.
-                    </p>
-
-                    <button
-                        type="button"
-                        class="btn-limpar-resultados"
-                    >
+                    <strong>Nenhum pacote encontrado</strong>
+                    <p>Tente mudar os filtros ou pesquisar outro destino.</p>
+                    <button type="button" class="btn-limpar-resultados">
                         Limpar filtros
                     </button>
                 `;
 
-                grid.appendChild(
-                    mensagem
-                );
+                grid.appendChild(mensagem);
 
-
-                const botao =
-                    mensagem.querySelector(
-                        ".btn-limpar-resultados"
-                    );
-
-
-                botao.addEventListener(
-                    "click",
-                    limparFiltros
-                );
+                mensagem
+                    .querySelector(".btn-limpar-resultados")
+                    .addEventListener("click", limparFiltros);
 
             }
 
-        }
-
-        else {
-
-            if (mensagem) {
-
-                mensagem.remove();
-
-            }
-
+        } else if (mensagem) {
+            mensagem.remove();
         }
 
     }
 
-
-    /* ==================================================
-       LIMPAR FILTROS
-    ================================================== */
+    /* ================= LIMPAR FILTROS ================= */
 
     function limparFiltros() {
 
-        filtros.forEach(
-            function (select) {
+        filtros.forEach(function (select) {
+            select.selectedIndex = 0;
+        });
 
-                select.selectedIndex = 0;
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
 
-            }
-        );
-
-
-        checkboxes.forEach(
-            function (checkbox) {
-
-                checkbox.checked = false;
-
-            }
-        );
-
-
-        /*
-        Também limpa a pesquisa
-        que veio da Home.
-        */
-
-        sessionStorage.removeItem(
-            "pesquisaTurismo"
-        );
-
-
+        sessionStorage.removeItem("pesquisaTurismo");
         pesquisaHome = null;
 
-
-        const resumo =
-            document.querySelector(
-                ".resumo-pesquisa"
-            );
-
+        const resumo = document.querySelector(".resumo-pesquisa");
 
         if (resumo) {
             resumo.remove();
         }
 
-
         aplicarFiltros();
+
+        // Devolve o foco ao primeiro filtro (o botão clicado pode ter sido removido)
+        if (filtros[0]) {
+            filtros[0].focus();
+        }
 
     }
 
+    /* ================= BOTÃO LIMPAR FILTROS ================= */
 
-    /* ==================================================
-       BOTÃO LIMPAR FILTROS
-    ================================================== */
-
-    const tituloFiltros =
-        document.querySelector(
-            ".filtros h3"
-        );
-
+    const tituloFiltros = document.querySelector(".filtros h3");
 
     if (tituloFiltros) {
 
-        const botaoLimpar =
-            document.createElement(
-                "button"
-            );
+        const botaoLimpar = document.createElement("button");
 
+        botaoLimpar.textContent = "Limpar filtros";
+        botaoLimpar.type = "button";
+        botaoLimpar.className = "limpar-filtros";
 
-        botaoLimpar.textContent =
-            "Limpar filtros";
+        // Fora do <h3>, para não virar parte do título
+        tituloFiltros.insertAdjacentElement("afterend", botaoLimpar);
 
-
-        botaoLimpar.type =
-            "button";
-
-
-        botaoLimpar.className =
-            "limpar-filtros";
-
-
-        tituloFiltros.appendChild(
-            botaoLimpar
-        );
-
-
-        botaoLimpar.addEventListener(
-            "click",
-            limparFiltros
-        );
+        botaoLimpar.addEventListener("click", limparFiltros);
 
     }
 
-    /* ==================================================
-       ESTILOS DOS ELEMENTOS CRIADOS PELO JS
-    ================================================== */
+    /* ================= ESTILOS DOS ELEMENTOS CRIADOS PELO JS ================= */
 
-    const estilo =
-        document.createElement(
-            "style"
-        );
-
+    const estilo = document.createElement("style");
 
     estilo.textContent = `
+
+        .pacote-card[hidden] {
+            display: none !important;
+        }
 
         .resumo-pesquisa {
             margin-top: 12px;
@@ -976,20 +561,29 @@ document.addEventListener("DOMContentLoaded", function () {
             display: block;
             margin-top: 10px;
             width: 100%;
-            min-height: 38px;
+            min-height: 44px;
             padding: 8px 10px;
             border: 1px solid #100633;
             border-radius: 8px;
             background: white;
             color: #100633;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: bold;
         }
 
         .limpar-filtros:hover {
             background: #100633;
             color: white;
+        }
+
+        .limpar-filtros:focus-visible,
+        .btn-limpar-resultados:focus-visible,
+        .filtros select:focus-visible,
+        .filtros input:focus-visible,
+        .ordenacao select:focus-visible {
+            outline: 3px solid #185f63;
+            outline-offset: 2px;
         }
 
         .sem-resultados {
@@ -1009,7 +603,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         .sem-resultados p {
-            color: #666;
+            color: #595959;
             font-size: 15px;
             margin-bottom: 20px;
         }
@@ -1025,115 +619,34 @@ document.addEventListener("DOMContentLoaded", function () {
             font-weight: bold;
         }
 
-        .modal-acessibilidade {
-            margin-top: 20px;
-        }
-
-        .modal-acessibilidade > strong {
-            display: block;
-            margin-bottom: 10px;
-        }
-
-        .modal-acessibilidade .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .fechar-modal {
-            position: absolute;
-            top: 12px;
-            right: 15px;
-            width: 42px;
-            height: 42px;
-            border: none;
-            border-radius: 50%;
-            background: #100633;
-            color: white;
-            font-size: 25px;
-            cursor: pointer;
-        }
-
-        .fechar-modal-final {
-            width: 100%;
-            min-height: 46px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 25px;
-            background: #100633;
-            color: white;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        @media (max-width: 600px) {
-
-            .modal-conteudo {
-                padding: 22px;
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
             }
-
-            .modal-conteudo h2 {
-                font-size: 20px;
-            }
-
         }
 
     `;
 
+    document.head.appendChild(estilo);
 
-    document.head.appendChild(
-        estilo
-    );
-
-
-    /* ==================================================
-       ATUALIZAR FILTROS
-    ================================================== */
+    /* ================= EVENTOS ================= */
 
     filtros.forEach(function (select) {
-
-        select.addEventListener(
-            "change",
-            aplicarFiltros
-        );
-
+        select.addEventListener("change", aplicarFiltros);
     });
 
-
-    checkboxes.forEach(
-        function (checkbox) {
-
-            checkbox.addEventListener(
-                "change",
-                aplicarFiltros
-            );
-
-        }
-    );
-
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener("change", aplicarFiltros);
+    });
 
     if (ordenacao) {
-
-        ordenacao.addEventListener(
-            "change",
-            aplicarFiltros
-        );
-
+        ordenacao.addEventListener("change", aplicarFiltros);
     }
 
-
-    /* ==================================================
-       INICIALIZAÇÃO
-    ================================================== */
+    /* ================= INICIALIZAÇÃO ================= */
 
     mostrarPesquisaHome();
-
     aplicarFiltros();
-
-
-    console.log(
-        "Pacotes.js carregado com sucesso!"
-    );
 
 });
