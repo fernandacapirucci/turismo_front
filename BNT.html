@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/Destinos.css">
+    <link rel="stylesheet" href="style/acessibilidade.css">
 </head>
 
 <body>
@@ -239,7 +240,12 @@
                     Reservar viagem
                     <svg class="ic"><use href="#i-arrow"/></svg>
                 </button>
-
+                <ul class="politicas">
+                    <li>
+                        <svg class="ic"><use href="#i-check-circle"/></svg>
+                        <span><strong>Cancelamento flexível:</strong> cancele até 7 dias antes da viagem e receba o valor de volta.</span>
+                    </li>
+                </ul>
             </aside>
 
         </section>
@@ -508,6 +514,12 @@
 
     </main>
 
+    <button type="button" class="but-touch"
+    aria-label="Abrir opções de atendimento" title="Abrir opções de atendimento">
+
+        <img src="assets/balão.png" alt="">
+
+    </button>
     <!-- Rodapé -->
     <footer class="rodape">
         <p class="slogan">Mais que viagens,<br>conexões sem barreiras.</p>
@@ -651,7 +663,8 @@
 
     });
     </script>
-
+<script src="javaScript/vlibras.js"></script>
+<script src="javaScript/acessibilidade.js"></script>
 </body>
 
 </html>

@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/Destinos.css">
+    <link rel="stylesheet" href="style/acessibilidade.css">
 </head>
 
 <body>
@@ -46,6 +47,7 @@
             <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></symbol>
             <symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2"/><path d="M12 8v6M6 10l6-2 6 2M9 22l3-8 3 8"/></symbol>
             <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+            <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
         </defs>
     </svg>
 
@@ -235,6 +237,12 @@
                     <svg class="ic"><use href="#i-arrow"/></svg>
                 </button>
 
+                <ul class="politicas">
+                    <li>
+                        <svg class="ic"><use href="#i-check-circle"/></svg>
+                        <span><strong>Cancelamento flexível:</strong> cancele até 7 dias antes da viagem e receba o valor de volta.</span>
+                    </li>
+                </ul>
             </aside>
 
         </section>
@@ -424,29 +432,31 @@
                 </summary>
                 <div class="dia-conteudo">
                     <img src="assets/transporte-adaptado.png" alt="Orla de Aramar">
-                    <p>Transfer e jantar de boas-vindas.</p>
+                    <p>Check-in em hotel silencioso.</p>
                 </div>
             </details>
 
             <details class="dia">
                 <summary>
                     <svg class="ic"><use href="#i-calendar"/></svg>
-                    Dia 2 - Cataratas
+                    Dia 2 - Cataratas Sensoriais
                     <svg class="ic seta-dia"><use href="#i-down"/></svg>
                 </summary>
                 <div class="dia-conteudo">
-                    <p>Trilha ecológica acessível e elevador do Salto Floriano.</p>
+                    <p>A visita às Cataratas é curta, acessível e focada na imersão sensorial. O trajeto utiliza elevadores para acessar diretamente
+                        os mirantes principais, evitando a trilha longa. A experiência prioriza estímulos naturais
+                        e conta com audiodescrição para enriquecer a percepção da paisagem.</p>
                 </div>
             </details>
 
             <details class="dia">
                 <summary>
                     <svg class="ic"><use href="#i-calendar"/></svg>
-                    Dia 3 - Itaipu e retorno
+                    Dia 3 - Parque das Aves
                     <svg class="ic seta-dia"><use href="#i-down"/></svg>
                 </summary>
                 <div class="dia-conteudo">
-                    <p>Tour especial pela Usina e pelo Marco das Três Fronteiras, com transfer acessível e suporte especializado para pessoas com mobilidade reduzida ou outras necessidades, garantindo mais conforto, segurança e tranquilidade durante o passeio.</p>
+                    <p>O passeio pelo Parque das Aves é feito em uma trilha totalmente plana, arborizada e de fácil locomoção.</p>
                 </div>
             </details>
 
@@ -493,6 +503,12 @@
 
     </main>
 
+    <button type="button" class="but-touch"
+    aria-label="Abrir opções de atendimento" title="Abrir opções de atendimento">
+
+        <img src="assets/balão.png" alt="">
+
+    </button>
     <!-- Rodapé -->
     <footer class="rodape">
         <p class="slogan">Mais que viagens,<br>conexões sem barreiras.</p>
@@ -514,11 +530,11 @@
     <dialog id="modal-leitura" aria-labelledby="titulo-leitura">
     <button id="fechar-leitura" type="button" aria-label="Fechar">✕</button>
     <article class="leitura-facil">
-        <h2 id="titulo-leitura">Foz do Iguaçu – Cataratas e Itaipu</h2>
+        <h2 id="titulo-leitura">Foz + Macuco Safari Sensorial</h2>
 
         <h3>A viagem</h3>
-        <p>A viagem dura 4 dias.</p>
-        <p>O preço começa em 1.590 reais por pessoa.</p>
+        <p>A viagem dura 3 dias.</p>
+        <p>O preço começa em 1.790 reais por pessoa.</p>
 
         <h3>O que está incluso</h3>
         <ul>
@@ -536,12 +552,11 @@
         <p>O café da manhã é das 6h30 às 10h.</p>
 
         <h3>Os passeios</h3>
-        <p>Você vai ao Salto Floriano.</p>
+        <p>Você vai ao Parque das Aves.</p>
         <p>Você vai às Cataratas do Iguaçu.</p>
-        <p>Você vai a Itaipu.</p>
-        <p>Você vai ao Marco das Três Fronteiras.</p>
+        <p>Você vai ao Macuco Safari Sensorial.</p>
+        <p>Os lugares têm acesso para cadeira de rodas, segundo a agência.</p>
         <p>Nas Cataratas, a trilha é calçada e tem elevador.</p>
-        <p>A agência avisa como é o acesso de cada passeio.</p>
         <p>O guia fica com você o tempo todo.</p>
 
         <h3>Precisa de ajuda especial?</h3>
@@ -565,7 +580,7 @@
             <li>Seus documentos</li>
         </ul>
         <p>Em Foz faz calor. Pode chover.</p>
-        <p>Nas Cataratas e no Salto Floriano você se molha.</p>
+        <p>Nas quedas d'água você se molha.</p>
 
         <h3>Emergência</h3>
         <ul>
@@ -616,7 +631,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 </script>
-
+<script src="javaScript/vlibras.js"></script>
+<script src="javaScript/acessibilidade.js"></script>
 </body>
 
 </html>

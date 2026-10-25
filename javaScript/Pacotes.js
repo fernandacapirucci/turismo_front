@@ -156,7 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
             card.querySelectorAll(".preco strong")[1].textContent.replace(/\D/g, "")
         );
 
-        const duracao = parseInt(card.querySelector(".preco small").textContent);
+        // A duração vem do atributo data-duracao do card (ex.: data-duracao="4")
+        const duracao = parseInt(card.dataset.duracao);
 
         const avaliacao = parseFloat(
             card.querySelector(".titulo-avaliacao span").textContent.replace(/[^\d.]/g, "")
@@ -179,6 +180,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 deficiencias.map(function (d) {
                     return nomesDeficiencia[d];
                 }).join(", ");
+        }
+
+        // Mantém o texto "X DIAS PRÓX. SAÍDA" do card igual à duração real
+        const rotuloDuracao = card.querySelector(".preco small");
+
+        if (rotuloDuracao && !isNaN(duracao)) {
+            rotuloDuracao.textContent = duracao + " DIAS PRÓX. SAÍDA";
         }
 
         return {
@@ -294,12 +302,12 @@ document.addEventListener("DOMContentLoaded", function () {
             precoMaximo = parseInt(precoSelecionado.replace(/\D/g, ""));
         }
 
-        let duracaoFiltro = null;
+        // "Até 3 dias" -> 3 (usa <=) | "4 dias" -> 4 (igual) | "5 dias" -> 5 (igual)
+        const ateTresDias = duracaoSelecionada === "Até 3 dias";
+        let duracaoExata = null;
 
-        if (duracaoSelecionada === "Até 3 dias") {
-            duracaoFiltro = 3;
-        } else if (duracaoSelecionada !== "Qualquer") {
-            duracaoFiltro = parseInt(duracaoSelecionada);
+        if (!ateTresDias && duracaoSelecionada !== "Qualquer") {
+            duracaoExata = parseInt(duracaoSelecionada);
         }
 
         const necessidadeHome = pesquisaHome
@@ -352,14 +360,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             /* DURAÇÃO */
-            if (mostrar && duracaoFiltro !== null) {
-                if (duracaoSelecionada === "Até 3 dias") {
-                    if (dados.duracao > 3) {
-                        mostrar = false;
-                    }
-                } else if (dados.duracao !== duracaoFiltro) {
-                    mostrar = false;
-                }
+            if (mostrar && ateTresDias && dados.duracao > 3) {
+                mostrar = false;
+            }
+
+            if (mostrar && duracaoExata !== null && dados.duracao !== duracaoExata) {
+                mostrar = false;
             }
 
             /* ACESSIBILIDADE */

@@ -1,0 +1,152 @@
+/* ================= BOTÃO DE ACESSIBILIDADE ================= */
+
+#btn-acessibilidade {
+    position: fixed;
+    top: 4px;
+    right: 12px;
+    z-index: 2000;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #d0d5dd;
+    border-radius: 50%;
+
+    background: #f8f9fb;
+    color: #2b3440;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+
+    transition: transform 0.2s, background 0.2s;
+}
+
+#btn-acessibilidade svg {
+    width: 28px;
+    height: 28px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+#btn-acessibilidade:hover {
+    transform: scale(1.08);
+}
+
+#btn-acessibilidade[aria-pressed="true"] {
+    background: #1f8f4e;
+    color: #ffffff;
+    border-color: #1f8f4e;
+}
+
+/* Abre espaço na barra superior para o botão não cobrir o link "Ajuda" */
+.top-bar .top-container {
+    padding-right: 50px;
+}
+
+
+/* ================= LINK "PULAR PARA O CONTEÚDO" ================= */
+
+.pular-conteudo {
+    position: fixed;
+    top: -60px;
+    left: 12px;
+    z-index: 3000;
+
+    padding: 10px 16px;
+
+    background: #0c0636;
+    color: #ffffff;
+
+    font-weight: bold;
+    font-size: 14px;
+
+    border-radius: 0 0 8px 8px;
+}
+
+.pular-conteudo:focus {
+    top: 0;
+    outline: 3px solid #ff9f1c;
+}
+
+
+/* ================= AVISO DE AJUDA ================= */
+
+.aviso-teclado {
+    position: fixed;
+    top: 54px;
+    right: 12px;
+    z-index: 2000;
+
+    max-width: 280px;
+    padding: 12px 14px;
+
+    background: #0c0636;
+    color: #ffffff;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.aviso-teclado[hidden] {
+    display: none;
+}
+
+
+/* ================= MODO NAVEGAÇÃO POR TECLADO ================= */
+
+/* Tudo que dá para clicar ganha uma borda verde */
+body.modo-teclado :is(
+    a[href],
+    button,
+    select,
+    textarea,
+    summary,
+    input:not([type="hidden"]):not([type="radio"]),
+    [tabindex]:not([tabindex="-1"])
+) {
+    outline: 3px solid #1db954;
+    outline-offset: 2px;
+}
+
+/* Os botões de opção (datas) ficam escondidos: destaca o cartão inteiro */
+body.modo-teclado .data-opcao {
+    outline: 3px solid #1db954;
+    outline-offset: 2px;
+}
+
+/* O item onde o Tab está agora fica laranja, grosso e com brilho */
+body.modo-teclado :is(
+    a[href],
+    button,
+    select,
+    textarea,
+    summary,
+    input,
+    [tabindex]
+):focus,
+body.modo-teclado .data-opcao:has(input:focus) {
+    outline: 5px solid #ff9f1c;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 8px rgba(255, 159, 28, 0.35);
+    position: relative;
+    z-index: 5;
+}
+
+/* Sem o modo ligado, o foco continua visível para quem usa Tab */
+:focus-visible {
+    outline: 3px solid #009fa3;
+    outline-offset: 3px;
+}
+
+

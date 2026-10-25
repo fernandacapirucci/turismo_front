@@ -1372,3 +1372,86 @@ input:focus-visible + .data-icone {
     font-size: 1.25rem;
     cursor: pointer;
 }
+
+/* ================= POLÍTICAS (cancelamento e seguro) ================= */
+
+.politicas {
+    list-style: none;
+    margin: 14px 0 0;
+    padding: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    background: #f2faf5;
+    border: 1px solid #cfe9d9;
+    border-radius: 10px;
+}
+
+.politicas li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+
+    font-size: 13px;
+    line-height: 1.45;
+    color: #333;
+}
+
+.politicas .ic {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    color: #1f8f4e;
+}
+
+.politicas strong {
+    color: #0c0636;
+}
+
+.politicas-resumo {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #444;
+}
+
+.but-touch {
+    position: fixed;
+
+    right: 25px;
+    bottom: 25px;
+
+    z-index: 1000;
+
+    width: 64px;
+    height: 64px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid white;
+    border-radius: 50%;
+
+    background: #53ba83;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.2s,
+        background 0.2s;
+}
+
+.but-touch:hover {
+    background: #3e9e6c;
+    transform: scale(1.05);
+}
+
+.but-touch img {
+    width: 31px;
+    height: 31px;
+}
