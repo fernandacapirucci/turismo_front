@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style/Destinos.css">
     <link rel="stylesheet" href="style/acessibilidade.css">
+    <link rel="stylesheet" href="style/avaliacoes.css">
 </head>
 
 <body>
@@ -518,6 +519,163 @@
 
         </section>
 
+        <!-- Cole este bloco logo abaixo da seção "O que está incluso / não incluso" -->
+<!-- e antes do botão final "Reservar viagem". -->
+<!-- No <head>: <link rel="stylesheet" href="avaliacoes.css"> -->
+<!-- Antes de </body>: <script src="avaliacoes.js" defer></script> -->
+
+<section class="av" id="avaliacoes" aria-labelledby="av-titulo"
+         data-destino="rio-de-janeiro" data-nota="4.8" data-total="107">
+  <header class="av__topo">
+    <h2 class="av__titulo" id="av-titulo">
+      <svg class="av__icone" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-6l-4 3v-3H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/>
+        <path d="M12 7.2l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/>
+      </svg>
+      Avaliações de quem já foi
+    </h2>
+    <button type="button" class="av__btn av__btn--contorno" id="av-ver-todas" aria-expanded="false" aria-controls="av-lista">
+      Ver todas as avaliações
+    </button>
+  </header>
+
+  <div class="av__corpo">
+    <aside class="av__resumo" aria-label="Resumo das notas">
+      <p class="av__nota" id="av-nota">4,8</p>
+      <p class="av__total"><span id="av-total">126</span> avaliações</p>
+
+      <ul class="av__categorias">
+        <li>
+          <span class="av__cat-nome">Acessibilidade</span>
+          <span class="av__barra" role="img" aria-label="4,9 de 5"><span style="width:98%"></span></span>
+          <span class="av__cat-valor">4,9</span>
+        </li>
+        <li>
+          <span class="av__cat-nome">Guia e equipe</span>
+          <span class="av__barra" role="img" aria-label="4,8 de 5"><span style="width:96%"></span></span>
+          <span class="av__cat-valor">4,8</span>
+        </li>
+        <li>
+          <span class="av__cat-nome">Hospedagem</span>
+          <span class="av__barra" role="img" aria-label="4,6 de 5"><span style="width:92%"></span></span>
+          <span class="av__cat-valor">4,6</span>
+        </li>
+        <li>
+          <span class="av__cat-nome">Transporte</span>
+          <span class="av__barra" role="img" aria-label="4,7 de 5"><span style="width:94%"></span></span>
+          <span class="av__cat-valor">4,7</span>
+        </li>
+      </ul>
+    </aside>
+
+    <div class="av__painel">
+      <div class="av__lista" id="av-lista">
+        <article class="av__item">
+          <div class="av__avatar" aria-hidden="true">G</div>
+          <div class="av__autor">
+            <p class="av__nome">Gabriel P.</p>
+            <p class="av__data">viajou em fev/2026</p>
+          </div>
+          <div class="av__conteudo">
+            <p class="av__estrelas" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
+            <p class="av__texto">A viagem foi fantástica! Tudo estava muito
+organizado e fácil de usar. Senti-me seguro e 
+confortável o tempo todo. Sem dúvida,
+eu faria essa viagem outra vez!</p>
+            <span class="av__tag">Outro</span>
+          </div>
+        </article>
+
+        <article class="av__item">
+          <div class="av__avatar" aria-hidden="true">S</div>
+          <div class="av__autor">
+            <p class="av__nome">Sophia T.</p>
+            <p class="av__data">viajou em mar/2026</p>
+          </div>
+          <div class="av__conteudo">
+            <p class="av__estrelas" role="img" aria-label="5 de 5 estrelas">★★★★★</p>
+            <p class="av__texto">Foi uma vivência incrível! Cada detalhe estava
+ pronto e fácil de usar. Senti paz e bem-estar
+ do início ao fim do passeio. Sem dúvida,
+ quero fazer isso de novo!</p>
+            <span class="av__tag">Baixa visão</span>
+          </div>
+        </article>
+        <!-- as avaliações novas entram aqui pelo avaliacoes.js -->
+      </div>
+
+      <button type="button" class="av__btn av__btn--escrever" id="av-abrir-form" aria-expanded="false" aria-controls="av-form">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M4 20h4L19 9a2.1 2.1 0 0 0-3-3L5 17z"/><path d="M14.5 7.5l3 3"/>
+        </svg>
+        Escrever avaliação
+      </button>
+
+      <form class="av__form" id="av-form" hidden novalidate>
+        <h3 class="av__form-titulo">Conte como foi a sua viagem</h3>
+
+        <div class="av__campo">
+          <label for="av-nome">Seu nome</label>
+          <input type="text" id="av-nome" name="nome" maxlength="30" placeholder="Ana C." autocomplete="given-name" required>
+          <p class="av__erro" data-erro-para="av-nome" role="alert"></p>
+        </div>
+
+        <div class="av__linha">
+          <div class="av__campo">
+            <label for="av-perfil">Seu perfil</label>
+            <select id="av-perfil" name="perfil" required>
+              <option value="">Escolha uma opção</option>
+              <option>Cadeirante</option>
+              <option>Baixa visão</option>
+              <option>Cego</option>
+              <option>Surdo</option>
+              <option>Deficiência auditiva</option>
+              <option>Mobilidade reduzida</option>
+              <option>Neurodivergente</option>
+              <option>Acompanhante</option>
+              <option>Outro</option>
+            </select>
+            <p class="av__erro" data-erro-para="av-perfil" role="alert"></p>
+          </div>
+
+          <div class="av__campo">
+            <label for="av-mes">Mês da viagem <span class="av__opcional">(opcional)</span></label>
+            <input type="month" id="av-mes" name="mes">
+          </div>
+        </div>
+
+        <fieldset class="av__campo av__nota-campo">
+          <legend>Sua nota</legend>
+          <div class="av__estrelas-input">
+            <input type="radio" name="nota" id="av-n5" value="5"><label for="av-n5" title="5 estrelas"><span class="sr-only">5 estrelas</span>★</label>
+            <input type="radio" name="nota" id="av-n4" value="4"><label for="av-n4" title="4 estrelas"><span class="sr-only">4 estrelas</span>★</label>
+            <input type="radio" name="nota" id="av-n3" value="3"><label for="av-n3" title="3 estrelas"><span class="sr-only">3 estrelas</span>★</label>
+            <input type="radio" name="nota" id="av-n2" value="2"><label for="av-n2" title="2 estrelas"><span class="sr-only">2 estrelas</span>★</label>
+            <input type="radio" name="nota" id="av-n1" value="1"><label for="av-n1" title="1 estrela"><span class="sr-only">1 estrela</span>★</label>
+          </div>
+          <p class="av__erro" data-erro-para="nota" role="alert"></p>
+        </fieldset>
+
+        <div class="av__campo">
+          <label for="av-texto">Sua avaliação</label>
+          <textarea id="av-texto" name="texto" rows="4" maxlength="400" placeholder="Como foi a acessibilidade do passeio, do hotel e do transporte?" required></textarea>
+          <div class="av__rodape-campo">
+            <p class="av__erro" data-erro-para="av-texto" role="alert"></p>
+            <p class="av__contador"><span id="av-contador">0</span>/400</p>
+          </div>
+        </div>
+
+        <div class="av__acoes">
+          <button type="button" class="av__btn av__btn--contorno" id="av-cancelar">Cancelar</button>
+          <button type="submit" class="av__btn av__btn--primario">Publicar avaliação</button>
+        </div>
+      </form>
+
+      <p class="av__status" id="av-status" role="status" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
         <!-- BOTÃO FINAL -->
         <div class="reserva-final">
             <a href="Pagamento_RJ.html"
@@ -674,5 +832,6 @@
     <script src="javaScript/Destinos.js"></script>
 <script src="javaScript/vlibras.js"></script>
 <script src="javaScript/acessibilidade.js"></script>
+<script src="javaScript/avaliacoes.js" defer></script>
 </body>
 </html>
