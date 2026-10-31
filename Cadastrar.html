@@ -136,21 +136,23 @@
 
         <div>
             <label class="rotulo" for="email">E-mail</label>
-            <input type="email" id="email" placeholder="Digite o seu e-mail">
+            <input type="email" id="email" placeholder="Digite o seu e-mail" autocomplete="email">
         </div>
 
         <div>
             <label class="rotulo" for="senha">Senha</label>
             <div class="campo-senha">
-                <input type="password" id="senha" placeholder="Digite a sua senha">
+                <input type="password" id="senha" placeholder="Mínimo de 6 caracteres" autocomplete="new-password" minlength="6">
                 <button type="button" id="toggle-senha" aria-label="Mostrar senha">
                     <img src="assets/olho-fechado.png" id="icone-olho" alt="">
                 </button>
             </div>
         </div>
 
+        <p class="mensagem-erro" id="mensagem-erro" role="alert" hidden></p>
+
         <div class="but-entrar">
-            <button type="button" onclick="window.location.href='Home.html'">Criar conta</button>
+            <button type="button" id="btn-cadastrar">Criar conta</button>
         </div>
 
         <div class="divider">
@@ -160,10 +162,8 @@
         </div>
 
         <div class="but-google">
-            <button type="button">
-                <img src="assets/Google.png" alt="">
-                Continuar com o Google
-            </button>
+            <!-- O botão do Google é desenhado aqui pelo Cadastrar.js -->
+            <div id="googleButton"></div>
         </div>
 
         <!-- Aparece só quando "Agência" estiver selecionada -->
@@ -177,8 +177,11 @@
 
 <section class="principal"></section>
 
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="javaScript/api.js"></script>
 <script src="javaScript/Cadastrar.js"></script>
 <script src="javaScript/vlibras.js"></script>
 <script src="javaScript/acessibilidade.js"></script>
+<script src="javaScript/sessao.js"></script>
 </body>
 </html>
