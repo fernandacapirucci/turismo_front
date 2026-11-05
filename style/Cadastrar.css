@@ -682,3 +682,25 @@ input[type="password"]::-ms-clear {
     }
 
 }
+
+/* ==================================================
+   MENSAGEM DE ERRO + BOTÃO GOOGLE (renderizado pelo Google)
+================================================== */
+
+.mensagem-erro {
+    margin: 0 0 6px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    background: #fdecea;
+    color: #b3261e;
+    font-size: 12px;
+}
+
+.mensagem-erro[hidden] {
+    display: none;
+}
+
+#googleButton {
+    display: flex;
+    justify-content: center;
+}
